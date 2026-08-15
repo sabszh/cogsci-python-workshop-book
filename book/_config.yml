@@ -1,0 +1,47 @@
+title: Python for Cognitive Science
+author: Sabrina · Cognitive Science MSc workshop · CC BY 4.0
+copyright: "2026"
+
+execute:
+  execute_notebooks: "off"
+
+only_build_toc_files: true
+
+html:
+  baseurl: "https://YOUR-GITHUB-USERNAME.github.io/cogsci-python-workshop"
+  use_repository_button: true
+  use_issues_button: true
+  use_edit_page_button: true
+  home_page_in_navbar: true
+
+repository:
+  url: "https://github.com/YOUR-GITHUB-USERNAME/cogsci-python-workshop"
+  path_to_book: book
+  branch: main
+
+launch_buttons:
+  notebook_interface: jupyterlab
+
+sphinx:
+  extra_extensions:
+    - sphinx_exercise
+    - sphinx_togglebutton
+  config:
+    html_static_path:
+      - _static
+    html_js_files:
+      - workshop-notes.js
+      - sidebar-heading-click.js
+      - reader-tools.js
+    html_css_files:
+      - workshop-notes.css
+    html_theme_options:
+      logo:
+        text: Python for Cognitive Science
+      navigation_with_keys: true
+      show_toc_level: 2
+    togglebutton_selector: ".toggle, .admonition.dropdown"
+    html_last_updated_fmt: "%B %d, %Y"
+    language: en
+    # Increment when reader interaction assets change so Sphinx refreshes their hashes.
+    reader_tools_revision: 2

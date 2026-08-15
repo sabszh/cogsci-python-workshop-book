@@ -1,0 +1,110 @@
+# Functions and analysis pipelines
+
+A research function should make one transformation explicit and testable.
+
+```python
+import numpy as np
+
+def compute_evoked(epochs, trial_axis=0):
+    """Average a 3D epochs array over its trial dimension."""
+    epochs = np.asarray(epochs)
+
+    if epochs.ndim != 3:
+        raise ValueError(
+            "Expected a 3D array shaped trials × channels × time; "
+            f"received {epochs.shape}"
+        )
+
+    return epochs.mean(axis=trial_axis)
+```
+
+## Inputs, outputs, and side effects
+
+Prefer returning a new result:
+
+```python
+def remove_incorrect(trials):
+    return trials.loc[trials["correct"]].copy()
+```
+
+Be careful with silent mutation:
+
+```python
+def remove_incorrect_in_place(trials):
+    trials.drop(trials.index[~trials["correct"]], inplace=True)
+```
+
+The second function changes the caller's object and returns `None`.
+
+<div class="live-python">
+  <p><strong>Check with Python:</strong> change one value so the assertion fails, then read the final error line.</p>
+  <textarea aria-label="Editable function and assertion example">def mean_rt(values):
+    assert len(values) &gt; 0, &quot;No reaction times supplied&quot;
+    assert all(value &gt; 0 for value in values), &quot;Reaction times must be positive&quot;
+    return sum(values) / len(values)
+reaction_times = [0.51, 0.62, 0.73]
+print(mean_rt(reaction_times))</textarea>
+  <button type="button">Run Python</button>
+  <pre aria-live="polite">Output will appear here.</pre>
+</div>
+
+## Compose a pipeline
+
+```python
+def load_trials(path):
+    return pd.read_csv(path)
+
+def clean_trials(trials):
+    return (
+        trials
+        .dropna(subset=["reaction_time"])
+        .query("reaction_time > 0")
+        .copy()
+    )
+
+def summarise_participants(trials):
+    return (
+        trials
+        .groupby(["participant", "condition"], as_index=False)
+        .agg(
+            mean_rt=("reaction_time", "mean"),
+            accuracy=("correct", "mean"),
+        )
+    )
+```
+
+## Assertions as executable assumptions
+
+```python
+assert epochs.ndim == 3
+assert epochs.shape[1] == len(channel_names)
+assert trials["reaction_time"].ge(0).all()
+```
+
+::::{exercise} Refactor
+:label: function-refactor
+Turn this repeated analysis into a function that accepts an epochs array and channel index and returns a 1D evoked signal.
+
+```python
+evoked_a = epochs_a.mean(axis=0)
+channel_a = evoked_a[2]
+
+evoked_b = epochs_b.mean(axis=0)
+channel_b = evoked_b[2]
+```
+::::
+
+::::{admonition} Hint
+:class: dropdown
+Give the function all values it needs as parameters and make the transformed
+DataFrame its return value. Avoid reading or modifying a global variable.
+::::
+
+::::{solution} function-refactor
+```python
+def evoked_channel(epochs, channel):
+    if epochs.ndim != 3:
+        raise ValueError("Expected trials × channels × time")
+    return epochs.mean(axis=0)[channel]
+```
+::::

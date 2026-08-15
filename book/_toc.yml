@@ -1,0 +1,47 @@
+format: jb-book
+root: home
+
+parts:
+  - caption: Start here
+    chapters:
+      - file: course_overview
+      - file: schedule
+      - file: setup
+      - file: how_to_use
+  - caption: Python foundations
+    chapters:
+      - file: foundations/python_fundamentals
+      - file: foundations/reading_documentation
+  - caption: Notebooks
+    chapters:
+      - file: notebooks
+      - file: notebooks/00_python_warmup
+      - file: notebooks/01_lexical_decision_pandas
+      - file: notebooks/02_real_eeg_arrays
+      - file: notebooks/03_model_workflow
+      - file: notebooks/04_nlp_text_features
+  - caption: "Day 1 · Research-ready Python"
+    chapters:
+      - file: day1/index
+      - file: day1/environments_paths
+      - file: day1/objects_dictionaries
+      - file: day1/numpy_dimensions
+      - file: day1/visualisation
+      - file: day1/challenge
+  - caption: "Day 2 · From data to models"
+    chapters:
+      - file: day2/index
+      - file: day2/functions_pipelines
+      - file: day2/pandas
+      - file: day2/model_workflows
+      - file: day2/nlp_bridge
+      - file: day2/capstone
+  - caption: Resources
+    chapters:
+      - file: resources/git_essentials
+      - file: resources/debugging
+      - file: resources/cheatsheet
+      - file: resources/glossary
+  - caption: Wrap-up
+    chapters:
+      - file: recap

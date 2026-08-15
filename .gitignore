@@ -1,0 +1,7 @@
+_build/
+book/_build/
+.venv/
+.book-venv/
+__pycache__/
+.DS_Store
+.ipynb_checkpoints/
