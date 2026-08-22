@@ -51,7 +51,7 @@ is_fast = duration < 0.7
 is_valid = duration > 0 and duration < 2
 ```
 
-Chained comparisons are idiomatic Python:
+Chained comparisons are a common and natural way to write Python code:
 
 ```python
 is_valid = 0 < duration < 2
@@ -61,7 +61,8 @@ Use `==` to compare values and `=` to assign a name. Use `is None` when checking
 
 ## Strings
 
-Strings are immutable sequences of characters:
+Strings are immutable sequences of characters, meaning that their contents cannot be
+changed in place after the string is created:
 
 ```python
 participant = "P07"
@@ -73,7 +74,8 @@ label.split("_")
 label.replace("control", "experimental")
 ```
 
-A method such as `.replace()` returns a new string; it does not modify the original.
+A method such as `.replace()` returns a new string because it does not modify the
+original string in place.
 
 ```python
 print(label)  # still P07_control
@@ -200,7 +202,8 @@ long_trials = [rt for rt in reaction_times if rt > 0.7]
 squared = {number: number ** 2 for number in range(5)}
 ```
 
-Use a normal loop if the comprehension becomes difficult to explain aloud.
+Use a normal loop if the comprehension becomes difficult to explain to yourself or to
+someone else.
 
 ## Functions
 
@@ -243,7 +246,8 @@ Avoid `from package import *`: it hides where names came from and can overwrite 
 
 ## Exceptions
 
-A traceback is a report, not merely a failure. The final line names the exception and usually provides the most useful first clue.
+A traceback is a report about what went wrong. The final line names the exception and
+usually provides the most useful first clue.
 
 ```python
 def positive_mean(values):

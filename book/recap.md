@@ -104,5 +104,6 @@ Ask these questions at each important step:
 
 ## Day 3
 
-Day 3 will address responsible use of generative AI and will be accompanied by a new
-notebook. Its detailed content is still being developed.
+Day 3 is a facilitated classroom day for group discussions and reflection about
+learning, skill-building, academic expectations, and the pressure created by available
+AI tools. See {doc}`day3/index` for the discussion themes and closing reflection.

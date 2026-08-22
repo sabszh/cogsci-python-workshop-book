@@ -8,6 +8,10 @@ methods: create an estimator, call `.fit()`, and then call `.predict()` or `.sco
 
 ## Samples, features, and targets
 
+Each row in `X` is one sample, such as one participant. Each column is a feature used
+to describe that sample. `y` contains the target value the model should learn to
+predict, with one target aligned to each row in `X`.
+
 ```text
 X.shape → samples × features
 y.shape → samples

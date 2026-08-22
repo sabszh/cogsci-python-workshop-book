@@ -1,4 +1,4 @@
-# Day 1 challenge · Epochs to evoked
+# Day 1 challenge: Epochs to evoked
 
 Work in groups of two or three. Predict shapes before running each transformation.
 

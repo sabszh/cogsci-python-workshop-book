@@ -277,12 +277,10 @@
   }
 
   function initialiseReaderTools() {
-    addExerciseNavigator();
     addCopyButtons();
     initialiseLivePython();
     initialiseAxisExplorer();
     initialiseFigureExplorer();
-    addGlossaryTooltips();
   }
 
   if (document.readyState === "loading") {

@@ -17,14 +17,14 @@ NOTEBOOKS = ROOT / "book" / "notebooks"
 REPLACEMENTS = {
     "00_python_warmup.ipynb": {
         'answer_1 = ""  # replace with A, B, or C': 'answer_1 = "B"',
-        'participant_ids = [f"P{number:02d}" for number in ...]':
-            'participant_ids = [f"P{number:02d}" for number in range(1, 4)]',
-        'sampling_rate = recording["sampling_rate"]  # fix me':
-            'sampling_rate = recording["acquisition"]["sampling_rate"]',
-        '''def valid_milliseconds(reaction_times):
-    # replace this line with your implementation
-    ...''': '''def valid_milliseconds(reaction_times):
-    return [value * 1000 for value in reaction_times if value > 0]''',
+        'total = ...': 'total = price * quantity',
+        'clean_word = ...': 'clean_word = word.strip().lower()',
+        '''def is_even(number):
+    ...''': '''def is_even(number):
+    return number % 2 == 0''',
+        'squares = [number ** 2 for number in ...]':
+            'squares = [number ** 2 for number in range(1, 5)]',
+        'course = ...': 'course = person["course"]',
     },
     "01_lexical_decision_pandas.ipynb": {
                 "trials = ...  # load the CSV": "trials = pd.read_csv(data_path)",
@@ -46,7 +46,7 @@ REPLACEMENTS = {
     .agg(mean_rt_ms=("RT_ms", "mean"))
 )''',
     },
-    "02_real_eeg_arrays.ipynb": {
+    "02_eeg_arrays.ipynb": {
         "raw_records, metadata = ...": "raw_records, metadata = arff.loadarff(data_path)",
         "eeg = ...": "eeg = pd.DataFrame(raw_records)",
         'eeg["eyeDetection"] = ...': 'eeg["eyeDetection"] = eeg["eyeDetection"].astype(int)',

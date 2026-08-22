@@ -2,14 +2,14 @@
 
 Open the repository in VS Code and select the workshop environment before running a notebook. Use **Shift+Enter** to run a cell.
 
-## Notebook 0 · Python basics
+## Notebook 0: Python basics
 
 Lists, dictionaries, comprehensions, functions, debugging, and short written answers.
 
 - {doc}`Open Notebook 0 <notebooks/00_python_warmup>` in the book
 - {download}`Download Notebook 0 <notebooks/00_python_warmup.ipynb>`
 
-## Notebook 1 · Lexical decision data
+## Notebook 1: Lexical decision data
 
 Analyse trial-level reaction times and accuracy from a lexical-decision experiment.
 
@@ -17,15 +17,15 @@ Analyse trial-level reaction times and accuracy from a lexical-decision experime
 - {download}`Download Notebook 1 <notebooks/01_lexical_decision_pandas.ipynb>`
 - {download}`Download the lexical-decision CSV <data/real/lexical_decision.csv>`
 
-## Notebook 2 · EEG Eye State
+## Notebook 2: EEG Eye State
 
 Move between pandas and NumPy, select samples with Boolean masks, calculate channel means, and practise reshaping arrays.
 
-- {doc}`Open Notebook 2 <notebooks/02_real_eeg_arrays>` in the book
-- {download}`Download Notebook 2 <notebooks/02_real_eeg_arrays.ipynb>`
+- {doc}`Open Notebook 2 <notebooks/02_eeg_arrays>` in the book
+- {download}`Download Notebook 2 <notebooks/02_eeg_arrays.ipynb>`
 - {download}`Download the EEG Eye State data <data/real/eeg_eye_state.arff>`
 
-## Notebook 3 · Behavioural summaries to a classifier
+## Notebook 3: Behavioural summaries to a classifier
 
 Create participant-level features from lexical-decision trials, split at the participant
 level, fit a scikit-learn pipeline, and inspect the confusion matrix and leakage risks.
@@ -33,7 +33,7 @@ level, fit a scikit-learn pipeline, and inspect the confusion matrix and leakage
 - {doc}`Open Notebook 3 <notebooks/03_model_workflow>` in the book
 - {download}`Download Notebook 3 <notebooks/03_model_workflow.ipynb>`
 
-## Notebook 4 · Text to features
+## Notebook 4: Text to features
 
 Build a document–term matrix and TF–IDF representation, compare documents, and transfer
 NumPy axis reasoning to token embeddings.

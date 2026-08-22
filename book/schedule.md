@@ -5,7 +5,7 @@ Each teaching block can contain a short talk with slides, live coding, one or tw
 anonymous CodeQuiz questions, discussion, and hands-on work in VS Code. The times show
 the broad shape of the day rather than every transition.
 
-## Day 1 · Research-ready Python and neuroscience arrays
+## Day 1: Research-ready Python and neuroscience arrays
 
 | Time | Block | Main content |
 |---|---|---|
@@ -13,12 +13,12 @@ the broad shape of the day rather than every transition.
 | 10:30–10:45 | Break |  |
 | 10:45–12:15 | Python foundations in practice | Objects, methods, attributes, dictionaries, mutation, functions, and documentation; live examples and Notebook 0 exercises |
 | 12:15–13:00 | Lunch |  |
-| 13:00–14:20 | NumPy and real EEG data | Slides and demonstrations on dimensions, axes, epoching, and evoked responses; shape predictions and the EEG notebook |
+| 13:00–14:20 | NumPy and EEG data | Slides and demonstrations on dimensions, axes, epoching, and evoked responses; shape predictions and the EEG notebook |
 | 14:20–14:35 | Break |  |
 | 14:35–15:45 | Visualisation and figure remix | Matplotlib objects, uncertainty, figure critique, and paired work with the Stroop dataset |
 | 15:45–16:00 | Day 1 close | Exit CodeQuiz, questions, and a preview of Day 2 |
 
-## Day 2 · Behavioural data, models, and transfer
+## Day 2: Behavioural data, models, and transfer
 
 | Time | Block | Main content |
 |---|---|---|
@@ -34,3 +34,10 @@ the broad shape of the day rather than every transition.
 ## What we deliberately leave out
 
 Two days cannot cover everything. We do not teach custom class hierarchies, decorators, async Python, transformer architecture, neural-network mathematics, or specialised neuroimaging packages. We build the Python fluency those topics depend on.
+
+## Day 3: Learning and reflection
+
+Day 3 is primarily a classroom conversation rather than a software session. Short
+prompts lead into small-group discussions, whole-class reflection, and a brief written
+plan for practising skills during the degree. The themes are learning independently,
+what it means to have a skill, academic expectations, and deliberate choices about AI.

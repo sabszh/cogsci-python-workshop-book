@@ -1,6 +1,7 @@
 # Integrated Cognitive Science challenge
 
-This challenge combines the workshop's shared foundations. Work in groups, but ensure every person can explain every transformation.
+This challenge brings together the workshop's shared foundations in one small research
+analysis. Work together to make the data, transformations, and results understandable.
 
 Open `book/workshop_scripts/capstone_starter.py` directly from the cloned repository,
 or {download}`download a separate copy <../workshop_scripts/capstone_starter.py>`.

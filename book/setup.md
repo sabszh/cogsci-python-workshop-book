@@ -5,7 +5,7 @@ browser, Aarhus University also provides development environments through
 [Interactive HPC on UCloud](https://interactivehpc.au.dk/en/about-interactive-hpc);
 see the [UCloud user guide](https://docs.cloud.sdu.dk/) before launching an app.
 
-Complete one route before Day 1. Ask for help early if a check fails.
+Complete one route before Day 1. If a check fails and ChatGPT is not providing useful help, email szh@cc.au.dk.
 
 ## What you need
 
@@ -27,10 +27,10 @@ The commands in {doc}`resources/git_essentials` cover the Git operations used in
 :class: important
 Use either **Conda** or **`venv` + pip** for the workshop. Both create an isolated Python environment. Do not create a `venv` inside an activated Conda environment, and do not install the same project interchangeably through both approaches.
 
-Lau recommends **Anaconda** for Advanced Cognitive Neuroscience. If you expect to take
-ACN, it is useful to install [Anaconda Distribution](https://www.anaconda.com/download)
-before the workshop; it supplies Conda, Python, Navigator, and the scientific package
-manager used by the course. The workshop commands below work with Anaconda.
+The Advanced Cognitive Neuroscience course recommends **Anaconda**. Installing
+[Anaconda Distribution](https://www.anaconda.com/download) gives you Conda, Python,
+Navigator, and the scientific package manager used by the course. The workshop
+commands below work with Anaconda.
 ```
 
 ## What is an environment?

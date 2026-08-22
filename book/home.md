@@ -13,7 +13,10 @@ This is an interactive workshop for incoming MSc Cognitive Science students at A
 
 The courses use Python for different scientific purposes, but they rely on the same fundamentals: values and types, collections, control flow, functions, objects, files, arrays, tables, visualisation, and reproducible environments. This workshop revisits that shared foundation before connecting it to course-specific examples.
 
-**Day 3 is being developed separately and will focus on responsible use of generative AI.** It will have its own notebook; details will be added when the programme is ready.
+**Day 3 is a facilitated classroom day about learning, skills, and AI.** It uses group
+discussion and individual reflection rather than a coding notebook. Most of the work
+happens in the room, with prompts that help students think about independent learning,
+academic expectations, and deliberate use of AI tools.
 
 It is not designed as a first introduction to programming. The aim is to make familiar ideas available again, fill in gaps, and build dependable habits for reading and debugging research code. See {doc}`course_overview` for a map of what each course is likely to require.
 
@@ -42,9 +45,8 @@ Each block follows the same rhythm:
 4. **Explain** what Python did and why.
 5. **Vary** the example independently.
 
-The CodeQuiz extension lets everyone answer inside a Python script. Responses are anonymous, and the instructor controls when solutions appear.
-
-CodeQuiz and the notebooks do different jobs. A quiz is a short, shared checkpoint: everyone commits to a prediction, the class sees the distribution of answers, and the instructor can decide whether to move on or revisit an idea. A notebook is the longer individual investigation that follows, where you write, run, debug, and vary the code. Quiz answers are anonymous classroom data; notebook work remains yours.
+CodeQuiz provides short anonymous checkpoints. The notebooks are where you write, run,
+debug, and vary the code yourself.
 
 ```{figure} _static/cartoons/xkcd-python.png
 :alt: Two people discuss how learning Python apparently lets one of them fly by importing antigravity.
@@ -57,18 +59,6 @@ Python can feel a little like this, although most workshop exercises obey gravit
 ```{admonition} The workshop principle
 Knowing syntax is not the same as having a dependable mental model. We care about what your objects contain, which dimensions your arrays have, and what each transformation means scientifically.
 ```
-
-## Course connections
-
-| Workshop foundation | ACN | NLP | Data Science |
-|---|---:|---:|---:|
-| Paths and environments | ✓ | ✓ | ✓ |
-| Objects, methods, attributes | ✓ | ✓ | ✓ |
-| Dictionaries and comprehensions | ✓ | ✓ | ✓ |
-| NumPy shapes and axes | ✓ | ✓ | ✓ |
-| Matplotlib | ✓ | ✓ | ✓ |
-| pandas | useful | ✓ | ✓ |
-| Model API and feature matrices | useful | ✓ | ✓ |
 
 Start with {doc}`setup`, then keep {doc}`resources/cheatsheet` open during the exercises.
 

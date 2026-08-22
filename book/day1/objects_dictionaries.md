@@ -41,7 +41,8 @@ model.predict(X_new)
 model.coef_
 ```
 
-You do not need to write a custom class today. You need to recognise and inspect objects created by other libraries.
+Scientific libraries create objects for recordings, tables, models, and figures. Learn
+to recognise these objects and inspect the operations they provide.
 
 ```python
 type(model)
@@ -50,6 +51,11 @@ help(model.fit)
 ```
 
 ## Dictionaries for research metadata
+
+A dictionary stores named pieces of information together. This makes it useful for
+metadata: an ID, condition, age, and file locations can travel as one clearly labelled
+record. Nested dictionaries group related information such as the files for one
+participant.
 
 ```python
 participant = {

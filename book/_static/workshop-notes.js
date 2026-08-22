@@ -46,8 +46,8 @@
     privacy.id = `${textareaId}-privacy`;
     privacy.className = "personal-answer__privacy";
     privacy.textContent = canStore
-      ? "Private to this browser · saved automatically"
-      : "Private note · automatic saving is unavailable in this browser";
+      ? "Private to this browser: saved automatically"
+      : "Private note: automatic saving is unavailable in this browser";
 
     const actions = document.createElement("span");
     actions.className = "personal-answer__actions";
@@ -175,6 +175,11 @@
       button.setAttribute("aria-expanded", String(expanded));
       button.setAttribute("aria-label", `Toggle ${label}`);
 
+      const indicator = document.createElement("span");
+      indicator.className = "workshop-nav-toggle__indicator";
+      indicator.setAttribute("aria-hidden", "true");
+      indicator.textContent = "⌄";
+      button.appendChild(indicator);
       if (captionText) {
         button.appendChild(captionText);
       } else {
@@ -183,12 +188,6 @@
         text.textContent = label;
         button.appendChild(text);
       }
-
-      const indicator = document.createElement("span");
-      indicator.className = "workshop-nav-toggle__indicator";
-      indicator.setAttribute("aria-hidden", "true");
-      indicator.textContent = "⌄";
-      button.appendChild(indicator);
       list.hidden = !expanded;
       caption.appendChild(button);
 

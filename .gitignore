@@ -5,3 +5,7 @@ book/_build/
 __pycache__/
 .DS_Store
 .ipynb_checkpoints/
+.test/
+*.pptx
+*.pptx.inspect.ndjson
+Python_for_Cognitive_Science_AU/

@@ -1,12 +1,12 @@
 # NumPy dimensions and axes
 
-This is the central technical idea of Day 1.
-
-The {doc}`../notebooks/02_real_eeg_arrays` notebook applies indexing, Boolean masks, aggregation, and reshaping to a real EEG recording.
+The {doc}`../notebooks/02_eeg_arrays` notebook applies indexing, Boolean masks, aggregation, and reshaping to a EEG recording.
 
 ## Start with meaning, then shape
 
-We represent epochs as:
+An epoch is a short segment of recorded EEG cut out around a known event, such as a
+stimulus onset. Keeping many event-aligned segments together lets us compare trials
+and calculate an average response. We represent them as:
 
 ```text
 trials × channels × time
@@ -85,7 +85,8 @@ evoked = epochs.mean(axis=0)
 print(evoked.shape)  # (32, 500)
 ```
 
-We averaged trials, so the trial dimension disappeared. This is not merely a Python operation; it is a scientific decision about which observations to combine.
+We averaged trials, so the trial dimension disappeared. This is both a Python
+operation and a scientific decision about which observations to combine.
 
 ::::{exercise} Predict the shapes
 :label: numpy-shapes
@@ -111,6 +112,10 @@ axis `n`; all other axes remain in the same order.
 ::::
 
 ## Broadcasting
+
+Broadcasting is NumPy's way of applying an operation to arrays with compatible shapes.
+When a dimension has size one, NumPy repeats that value across the matching larger
+dimension instead of requiring you to copy the data yourself.
 
 Subtract a baseline for every trial and channel:
 

@@ -164,8 +164,3 @@ trials_path = project_dir / "data" / "trials.csv"
 project folder. Notebooks do not define `__file__`; in a notebook, use a known project
 root or locate it from `Path.cwd()` after checking the current directory.
 ::::
-
-```{admonition} ACN and NLP
-:class: note
-Both neuroimaging pipelines and the NLP course operate on many files and installed dependencies. A stable project structure prevents analyses from depending on one person's laptop layout.
-::::

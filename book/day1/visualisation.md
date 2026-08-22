@@ -132,7 +132,7 @@ fig.savefig("evoked.png", dpi=300, bbox_inches="tight")
 A caption or nearby paragraph should state the main pattern so the interpretation is
 not available only through the image.
 
-## Challenge 1 · Repair the plot
+## Challenge 1: Repair the plot
 
 This code runs, but it omits information needed to interpret the values.
 
@@ -159,6 +159,18 @@ conditions implies a meaningful continuum. Direct value labels can reduce relian
 colour.
 ::::
 
+Try your changes in the browser before comparing with the solution:
+
+<div class="live-python">
+  <p><strong>Run your calculation:</strong> edit the code and run it to inspect the values behind your plot.</p>
+  <textarea aria-label="Editable plot repair example">conditions = ["congruent", "incongruent", "neutral"]
+mean_rt = [515, 681, 552]
+print("slowest condition:", conditions[mean_rt.index(max(mean_rt))])
+print("difference from congruent:", mean_rt[1] - mean_rt[0], "ms")</textarea>
+  <button type="button">Run Python</button>
+  <pre aria-live="polite">Output will appear here.</pre>
+</div>
+
 ::::{solution} figure-rescue
 One possible version is:
 
@@ -184,7 +196,7 @@ A bar chart does not imply measured values between these nominal conditions. Dir
 labels keep the numerical comparison available without colour.
 ::::
 
-## Challenge 2 · Show the uncertainty
+## Challenge 2: Show the uncertainty
 
 The means below come from the same fictional Stroop experiment. The second array is
 the standard error of each mean.
@@ -206,6 +218,9 @@ than typing `166` into the annotation.
 `ax.errorbar(..., yerr=sem_rt, capsize=5)` adds the standard errors. Calculate the
 annotation with `mean_rt[1] - mean_rt[0]`.
 ::::
+
+Use the same workflow here: calculate the difference in Python, run it, and then add
+the result to your figure annotation.
 
 ::::{solution} uncertainty-plot
 For example:
@@ -237,7 +252,7 @@ fig.tight_layout()
 The caption must identify the error bars; here they are standard errors.
 ::::
 
-## Challenge 3 · Figure remix
+## Challenge 3: Figure remix
 
 The script `book/workshop_scripts/matplotlib_challenge.py` opens directly from the
 cloned repository. You can also {download}`download a separate copy <../workshop_scripts/matplotlib_challenge.py>`.

@@ -39,4 +39,5 @@ files
   → evaluation
 ```
 
-Our goal is not to master every model. It is to recognise the shared Python structure underneath regression, classification, NLP, and cognitive modelling.
+You will not learn every model in one workshop. The useful common ground is the Python
+structure underneath regression, classification, NLP, and cognitive modelling.

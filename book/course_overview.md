@@ -8,11 +8,6 @@ This workshop primarily prepares you for three courses:
 - **Natural Language Processing (NLP)**, where Python is used to represent text, build processing pipelines, create numeric features, and interact with machine-learning models.
 - **Data Science, Prediction and Forecasting**, where Python supports tabular data analysis, statistical learning, model evaluation, and reproducible prediction workflows.
 
-```{admonition} Scope of this workshop
-:class: note
-We focus on transferable Python fundamentals. We will not try to teach the complete neuroscience, NLP, or statistical-learning curriculum in two days.
-```
-
 ## What is shared?
 
 All three courses require you to move between three levels of understanding:
@@ -117,15 +112,3 @@ reproducible analysis and model workflows
 ```
 
 You are not expected to memorise every method. You are expected to know how to inspect an object, consult documentation, test an assumption, and explain what your code does.
-
-### Requested ACN preparation
-
-| Requested topic | Where it appears |
-|---|---|
-| `pathlib` and project files | Environments and paths; setup diagnostic; capstone |
-| Classes, objects, methods, and attributes | Python foundations; object-reading exercises; Matplotlib and scikit-learn APIs |
-| Dictionaries | Python fundamentals; nested participant and acquisition metadata |
-| Matplotlib | Evoked-response plots; accessibility notes; three figure challenges |
-| Virtual environments | Full Conda/Anaconda and `venv` setup routes; VS Code kernel troubleshooting |
-| 3D NumPy arrays | `epochs × channels × time`, indexing, aggregation, pseudo-epochs, and epoch-to-evoked challenge |
-| Meaning of averaging an axis | Shape-prediction exercises, EEG notebook checks, and reflective questions about information loss |

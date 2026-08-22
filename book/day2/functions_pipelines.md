@@ -1,5 +1,10 @@
 # Functions and analysis pipelines
 
+Functions give each analysis step a name, inputs, and output. This makes a long
+workflow easier to read and lets you test one transformation at a time. In this
+chapter we build from a small NumPy function to a pandas pipeline and use assertions
+to catch assumptions before they affect later results.
+
 A research function should make one transformation explicit and testable.
 
 ```python
@@ -27,7 +32,8 @@ def remove_incorrect(trials):
     return trials.loc[trials["correct"]].copy()
 ```
 
-Be careful with silent mutation:
+Be careful with silent mutation: a function can change an object supplied by its
+caller without making that change obvious at the call site.
 
 ```python
 def remove_incorrect_in_place(trials):
@@ -49,6 +55,9 @@ print(mean_rt(reaction_times))</textarea>
 </div>
 
 ## Compose a pipeline
+
+A pipeline is a sequence of named steps. Each step receives the result from the
+previous step, so the full analysis can be read from raw files to a summary table.
 
 ```python
 def load_trials(path):
@@ -74,6 +83,10 @@ def summarise_participants(trials):
 ```
 
 ## Assertions as executable assumptions
+
+An `assertion` checks that a condition is true at a point in the analysis. If the
+condition is true, execution continues. If it is false, Python raises an
+`AssertionError` and stops at that line, showing that an assumption needs attention.
 
 ```python
 assert epochs.ndim == 3

@@ -15,34 +15,14 @@ OUTPUT.mkdir(parents=True, exist_ok=True)
 
 FEEDBACK_CODE = '''
 from pathlib import Path
+import sys
 
-class Check:
-    def _result(self, passed, success, hint):
-        if passed:
-            print(f"✅ {success}")
-        else:
-            print("✗ Not correct. Open the hint if needed.")
-        return passed
+for _candidate in (Path.cwd(), Path.cwd() / "book" / "notebooks"):
+    if (_candidate / "workshop_checks.py").exists():
+        sys.path.insert(0, str(_candidate))
+        break
 
-    def equal(self, actual, expected, success="Correct.", hint="Value does not match the expected result."):
-        try:
-            passed = actual == expected
-            if hasattr(passed, "all"):
-                passed = bool(passed.all())
-        except Exception:
-            passed = False
-        return self._result(bool(passed), success, hint)
-
-    def shape(self, actual, expected, success="Shape is correct.", hint="Shape is incorrect."):
-        return self._result(tuple(actual.shape) == tuple(expected), success, hint)
-
-    def columns(self, frame, expected, success="Columns are correct.", hint="Inspect frame.columns and select with a list of names."):
-        return self._result(list(frame.columns) == list(expected), success, hint)
-
-    def choice(self, actual, expected, explanations):
-        normalised = str(actual).strip().upper()
-        hint = explanations.get(normalised, "Choose one of the listed letters.")
-        return self._result(normalised == expected.upper(), "Correct.", hint)
+from workshop_checks import Check, run_checks
 
 check = Check()
 '''
@@ -75,30 +55,24 @@ def hint(text):
 
 
 def answer(text):
-    return markdown(
-        f'''<details class="notebook-answer">
-<summary><strong>Reveal answer</strong></summary>
-
-{text.strip()}
-
-</details>'''
-    )
+    return None
 
 
 def discussion(text):
-    return markdown(
-        f'''<details class="notebook-reflection">
-<summary><strong>Compare your reasoning</strong></summary>
-
-{text.strip()}
-
-</details>'''
-    )
+    return None
 
 
 def notebook(title, cells):
     nb = nbf.v4.new_notebook()
-    nb["cells"] = [markdown(f"# {title}")] + cells
+    filtered = []
+    for cell in cells:
+        if cell is None:
+            continue
+        source = "".join(cell.get("source", []))
+        if "Reflection" in source or "reflection_" in source:
+            continue
+        filtered.append(cell)
+    nb["cells"] = [markdown(f"# {title}")] + filtered
     nb["metadata"] = {
         "kernelspec": {
             "display_name": "Python 3",
@@ -111,185 +85,73 @@ def notebook(title, cells):
 
 
 INTRO = notebook(
-    "Notebook 0 · Python basics",
+    "Notebook 0: Python warm-up",
     [
         markdown('''
-Run cells with **Shift+Enter**. Replace `...` where shown. Write down predictions before
-running the corresponding code.
+Use these short exercises to practise basic Python patterns before the data notebooks.
+Replace `...` where shown, run the check, and change one example to see what happens.
 '''),
         hidden_code(FEEDBACK_CODE),
         markdown('''
-## 1 · Predict the output
+## 1: Predict the output
 
-Without running the next expression, predict its value:
+What will this print? Choose `A`, `B`, or `C` before running the check.
 
 ```python
-channels = ["Fz", "Cz"]
-alias = channels
-alias.append("Pz")
-len(channels)
+numbers = [1, 2]
+alias = numbers
+alias.append(3)
+len(numbers)
 ```
-
-Choose `"A"`, `"B"`, or `"C"` below.
 
 - A: `2`
 - B: `3`
 - C: an error
 '''),
-        code('''
-answer_1 = ""  # replace with A, B, or C
-'''),
-        hint('''`alias = channels` does not copy the list. Both names refer to the same object.'''),
-        hidden_code('''
-check.choice(
-    answer_1,
-    "B",
-    {
-        "A": "Assignment did not copy the list. Both names refer to the same object.",
-        "B": "",
-        "C": "Appending to a list is allowed; lists are mutable.",
-    },
-)
-'''),
-        answer('''
-**B: `3`.** `alias` and `channels` refer to the same list. Appending through either
-name changes that shared object.
-'''),
-        markdown('''
-## 2 · Fill in the blank
+        code('''answer_1 = ""  # replace with A, B, or C'''),
+        hint('''Assignment gives two names to the same list. Appending through either name changes that list.'''),
+        hidden_code('''run_checks("00_python_warmup_predict", locals())'''),
+        markdown('''## 2: Use variables and arithmetic
 
-Create labels `P01`, `P02`, and `P03`. Replace `...`; do not change the check.
-'''),
-        code('''
-participant_ids = [f"P{number:02d}" for number in ...]
-'''),
-        hint('''`range(start, stop)` excludes `stop`. The numbers should be 1, 2, and 3.'''),
-        hidden_code('''
-check.equal(
-    participant_ids,
-    ["P01", "P02", "P03"],
-    success="Participant IDs are correct.",
-    hint="range(start, stop) excludes stop. Which values should number take?",
-)
-'''),
-        answer('''
-```python
-participant_ids = [f"P{number:02d}" for number in range(1, 4)]
-```
+Calculate the total cost for six items at seven units each.'''),
+        code('''price = 7
+quantity = 6
+total = ...'''),
+        hint('''Multiply `price` by `quantity`.'''),
+        hidden_code('''run_checks("00_python_warmup_arithmetic", locals())'''),
+        markdown('''## 3: Clean a string
 
-`range(1, 4)` produces `1`, `2`, and `3`; the stop value is excluded.
-'''),
-        markdown('''
-## 3 · Debug the dictionary
+Remove surrounding whitespace and make the word lowercase.'''),
+        code('''word = "  PYTHON  "
+clean_word = ...'''),
+        hint('''Use `.strip()` and `.lower()`.'''),
+        hidden_code('''run_checks("00_python_warmup_string", locals())'''),
+        markdown('''## 4: Write a small function
 
-The code should return `500`, but the key access is wrong. Fix only the final line.
-'''),
-        code('''
-recording = {
-    "participant": "P07",
-    "acquisition": {"sampling_rate": 500, "channels": 32},
-}
+Complete `is_even`. It should return `True` for even numbers and `False` for odd numbers.'''),
+        code('''def is_even(number):
+    ...'''),
+        hint('''The remainder operator is `%`. An even number has remainder zero after division by two.'''),
+        hidden_code('''run_checks("00_python_warmup_function", locals())'''),
+        markdown('''## 5: Build a list with a comprehension
 
-sampling_rate = recording["sampling_rate"]  # fix me
-'''),
-        hint('''Access the `acquisition` dictionary first, then access `sampling_rate`.'''),
-        hidden_code('''
-check.equal(sampling_rate, 500, hint="The value lives inside the nested acquisition dictionary.")
-'''),
-        answer('''
-```python
-sampling_rate = recording["acquisition"]["sampling_rate"]
-```
+Create the squares of the numbers 1 through 4.'''),
+        code('''squares = [number ** 2 for number in ...]'''),
+        hint('''Use `range(1, 5)`.'''),
+        hidden_code('''run_checks("00_python_warmup_list", locals())'''),
+        markdown('''## 6: Read a dictionary
 
-The first key returns the nested dictionary; the second returns its sampling rate.
-'''),
-        markdown('''
-## 4 · Write a function
-
-Complete the function. It should keep positive reaction times and convert seconds to
-milliseconds. Empty input should return an empty list.
-'''),
-        code('''
-def valid_milliseconds(reaction_times):
-    # replace this line with your implementation
-    ...
-'''),
-        hint('''A list comprehension can filter with `if value > 0` and transform with `value * 1000`.'''),
-        hidden_code('''
-check.equal(
-    valid_milliseconds([0.42, -1, 0.71]),
-    [420.0, 710.0],
-    hint="Filter with an if-clause and multiply retained values by 1000.",
-)
-check.equal(valid_milliseconds([]), [], hint="A comprehension naturally handles an empty input.")
-'''),
-        answer('''
-```python
-def valid_milliseconds(reaction_times):
-    return [value * 1000 for value in reaction_times if value > 0]
-```
-'''),
-        markdown('''
-### Reflection · When should a function reject data?
-
-The function silently removes zero and negative reaction times. When would that be a
-reasonable cleaning rule, and when could it hide a problem in data collection? What
-information would you want before deciding?
-'''),
-        code('''
-reflection_cleaning = """
-I would check ...
-"""
-'''),
-        discussion('''
-A defensible decision needs the task protocol, the meaning of special values, the
-recording software's conventions, and counts by participant or condition. Silently
-dropping values can conceal a systematic equipment or coding problem. A research
-pipeline should record how many observations were removed and why.
-'''),
-        markdown('''
-## 5 · Explain the result
-
-Why did changing `alias` also change `channels` in Exercise 1? Answer in two or three
-sentences.
-'''),
-        code('''
-your_explanation = """
-Both variables changed because ...
-"""
-
-print(your_explanation)
-'''),
-        hint('''Use the terms *mutable object*, *assignment*, and *two names for one object*.'''),
-        answer('''
-Assignment did not copy the list. `channels` and `alias` are two names for the same
-mutable object, so `.append("Pz")` is visible through both names. Use `channels.copy()`
-to create a separate shallow copy.
-'''),
-        markdown('''
-### Reflection · Transfer the idea
-
-Where could accidental mutation matter in a real analysis: participant metadata,
-plotting parameters, channel lists, or preprocessing settings? Describe one bug that
-could look scientifically plausible rather than producing an obvious error.
-'''),
-        code('''
-reflection_mutation = """
-A plausible mutation bug would be ...
-"""
-'''),
-        discussion('''
-One example is removing a bad channel from a shared channel list while processing one
-participant. Later participants would then be analysed with the shortened list too.
-The code might run and return reasonable-looking arrays, making the mistake harder to
-notice than an exception.
-'''),
+Select the value stored under the `course` key.'''),
+        code('''person = {"name": "Ada", "course": "Python"}
+course = ...'''),
+        hint('''Use square brackets with the key name.'''),
+        hidden_code('''run_checks("00_python_warmup_dictionary", locals())'''),
     ],
 )
 
 
 LEXICAL_DECISION = notebook(
-    "Notebook 1 · Lexical decision data with pandas",
+    "Notebook 1: Lexical decision data with pandas",
     [
         markdown('''
 The `lexdec` dataset contains 1,659 lexical-decision trials from 21 participants and 79
@@ -300,7 +162,7 @@ frequency, word length, and semantic class.
 Source: `languageR`, Baayen (2008).
 '''),
         hidden_code(FEEDBACK_CODE),
-        markdown("## 1 · Load the data"),
+        markdown("## 1: Load the data"),
         code('''
 import numpy as np
 import pandas as pd
@@ -328,7 +190,7 @@ trials.head()
 ```
 '''),
         markdown('''
-## 2 · Inspect the DataFrame
+## 2: Inspect the DataFrame
 
 Inspect `.shape`, `.columns`, and `.dtypes`. Assign the number of trials, participants,
 and words to the three variables below.
@@ -356,7 +218,7 @@ n_words = trials["Word"].nunique()
 ```
 '''),
         markdown('''
-## 3 · Select columns
+## 3: Select columns
 
 Create `analysis_columns` containing these columns in this order: `Subject`, `Word`,
 `RT`, `NativeLanguage`, `Correct`, `Frequency`, `Length`, and `Class`.
@@ -381,7 +243,7 @@ analysis_columns = trials[[
 ```
 '''),
         markdown('''
-## 4 · Accuracy and Boolean filtering
+## 4: Accuracy and Boolean filtering
 
 Count correct and incorrect responses. Then create `correct_trials` containing only
 correct responses.
@@ -407,7 +269,7 @@ correct_trials = trials.loc[trials["Correct"].eq("correct")]
 There are 1,594 correct and 65 incorrect trials.
 '''),
         markdown('''
-### Reflection · What changes when errors disappear?
+### Reflection: What changes when errors disappear?
 
 Filtering to correct responses is common in reaction-time analyses. Which research
 question can `correct_trials` answer, and which question can it no longer answer? Could
@@ -426,7 +288,7 @@ condition makes more errors, its remaining correct trials may be a selected subs
 always inspect accuracy before interpreting reaction times.
 '''),
         markdown('''
-## 5 · Convert reaction time
+## 5: Convert reaction time
 
 `RT` is the natural logarithm of reaction time in milliseconds. Add `RT_ms` to
 `correct_trials` by applying `np.exp` to `RT`.
@@ -452,7 +314,7 @@ correct_trials["RT_ms"] = np.exp(correct_trials["RT"])
 The median correct-trial reaction time is approximately 571 ms.
 '''),
         markdown('''
-## 6 · Summarise language groups
+## 6: Summarise language groups
 
 Calculate the median correct-trial reaction time for the two `NativeLanguage` groups.
 Return a Series indexed by `NativeLanguage`.
@@ -478,7 +340,7 @@ The medians are approximately 541.5 ms for the English group and 616.5 ms for th
 Other group.
 '''),
         markdown('''
-### Reflection · One number per group
+### Reflection: One number per group
 
 What does the group median conceal? Name two distributions or levels of variation you
 would inspect before describing one language group as “slower.”
@@ -496,7 +358,7 @@ Participant-level summaries and plots of the distributions are useful first chec
 an inferential analysis should respect repeated observations of participants and words.
 '''),
         markdown('''
-## 7 · Word frequency and reaction time
+## 7: Word frequency and reaction time
 
 Create one row per word with its frequency and mean correct reaction time. Plot word
 frequency against mean reaction time.
@@ -542,7 +404,7 @@ length, trial order, accuracy, and unequal participant composition could affect 
 comparison between language groups.
 '''),
         markdown('''
-### Reflection · From pattern to claim
+### Reflection: From pattern to claim
 
 Write one sentence that the scatter plot supports and one stronger sentence that it
 does **not** support. What additional analysis or design information would you need for
@@ -566,7 +428,7 @@ and the sampling design would need attention in a model and interpretation.
 
 
 EEG = notebook(
-    "Notebook 2 · Real EEG data: shapes, masks, and signals",
+    "Notebook 2: EEG data: shapes, masks, and signals",
     [
         markdown('''
 The UCI **EEG Eye State** dataset contains 14 EEG channels from one continuous
@@ -578,7 +440,7 @@ Roesler, O. (2013), UCI Machine Learning Repository, CC BY 4.0,
 <https://doi.org/10.24432/C57G7J>.
 '''),
         hidden_code(FEEDBACK_CODE),
-        markdown("## 1 · Load the ARFF file"),
+        markdown("## 1: Load the ARFF file"),
         code('''
 import numpy as np
 import pandas as pd
@@ -612,7 +474,7 @@ eeg.head()
 ```
 '''),
         markdown('''
-## 2 · Predict the shape
+## 2: Predict the shape
 
 The dataset has 14 EEG channels and one label column. What is the shape of the complete
 DataFrame?
@@ -640,7 +502,7 @@ check.choice(
 **B: `(14980, 15)`.** The 14 channel columns plus `eyeDetection` give 15 columns.
 The 14,980 measurements are rows.
 '''),
-        markdown("## 3 · Separate features and target\n\nFill the blanks so `X` contains the channels and `y` contains eye state."),
+        markdown("## 3: Separate features and target\n\nFill the blanks so `X` contains the channels and `y` contains eye state."),
         code('''
 X = eeg.drop(columns=[...])
 y = eeg[...]
@@ -657,7 +519,7 @@ y = eeg["eyeDetection"]
 ```
 '''),
         markdown('''
-### Reflection · A target hiding among the features
+### Reflection: A target hiding among the features
 
 Imagine leaving `eyeDetection` inside `X` before training a classifier to predict
 `y`. What would happen to performance, and why would a very high score be a warning
@@ -675,7 +537,7 @@ strong results should prompt an inspection of feature names, preprocessing order
 whether information from the target or test set entered the features.
 '''),
         markdown('''
-## 4 · Move from pandas to NumPy
+## 4: Move from pandas to NumPy
 
 Create `signals` as a NumPy array. Then select the first 100 samples from channel O1.
 The output should be one-dimensional.
@@ -698,7 +560,7 @@ o1_excerpt = signals[:100, o1_index]
 ```
 '''),
         markdown('''
-## 5 · Boolean masks
+## 5: Boolean masks
 
 Use `y` to make two arrays: samples recorded with eyes open and samples recorded with
 eyes closed.
@@ -720,7 +582,7 @@ eyes_closed = signals[y.eq(1)]
 ```
 '''),
         markdown('''
-## 6 · Aggregate along the correct axis
+## 6: Aggregate along the correct axis
 
 Calculate one mean value per channel for each eye state. The result should have shape
 `(14,)`.
@@ -743,7 +605,7 @@ closed_channel_means = eyes_closed.mean(axis=0)
 Axis 0 contains measurements. Averaging it leaves one mean per channel.
 '''),
         markdown('''
-### Reflection · What did the mean remove?
+### Reflection: What did the mean remove?
 
 After averaging all samples within each eye state, which kinds of information are gone?
 Could two recordings have identical channel means but meaningfully different signals?
@@ -762,7 +624,7 @@ in variance, spectral power, artefacts, or the timing of state changes. Aggregat
 useful only when the retained summary matches the scientific question.
 '''),
         markdown('''
-## 7 · Visual comparison
+## 7: Visual comparison
 
 Make a grouped or paired plot comparing the 14 channel means. Label the axes and states.
 Then answer: why would this plot alone be insufficient evidence that closing the eyes
@@ -795,7 +657,7 @@ independent, randomly assigned observations. Artefacts, drift, time, and transit
 between states could contribute to the difference. The plot is descriptive.
 '''),
         markdown('''
-## Bonus · Build pseudo-epochs
+## Bonus: Build pseudo-epochs
 
 Take the first 14,000 samples and reshape them into
 `100 pseudo-epochs × 140 time samples × 14 channels`, then transpose to the ACN
@@ -822,7 +684,7 @@ pseudo_epochs = (
 The final shape is `pseudo-epochs × channels × time`: `(100, 14, 140)`.
 '''),
         markdown('''
-### Reflection · A valid shape is not yet a valid analysis
+### Reflection: A valid shape is not yet a valid analysis
 
 The pseudo-epochs have the expected three-dimensional shape. Why does that not make
 them genuine experimental epochs? What event information would real epoching require?
@@ -844,16 +706,14 @@ cannot replace experimental meaning.
 
 
 MODEL_WORKFLOW = notebook(
-    "Notebook 3 · From behavioural summaries to a classifier",
+    "Notebook 3: From behavioural summaries to a classifier",
     [
         markdown('''
 This notebook uses the lexical-decision data again, but at a new unit of analysis:
-one row per participant. The aim is to practise the scikit-learn interface and locate
-the points where leakage can enter an analysis—not to make a substantive claim about
-language background from 21 people.
+one row per participant. The aim is to practise the scikit-learn interface and learn where leakage can enter an analysis.
 '''),
         hidden_code(FEEDBACK_CODE),
-        markdown("## 1 · Load and prepare trial-level variables"),
+        markdown("## 1: Load and prepare trial-level variables"),
         code('''
 import numpy as np
 import pandas as pd
@@ -889,7 +749,7 @@ trials["RT_ms"] = np.exp(trials["RT"])
 ```
 '''),
         markdown('''
-## 2 · Make one row per participant
+## 2: Make one row per participant
 
 Create `participants` with `Subject` and `NativeLanguage`, plus mean reaction time,
 accuracy, mean word frequency, and mean word length. Use named aggregation.
@@ -917,7 +777,7 @@ participants = (
 ```
 '''),
         markdown('''
-## 3 · Separate features and target
+## 3: Separate features and target
 
 Let `X` contain the four numerical summaries and let `y` contain `NativeLanguage`.
 '''),
@@ -939,7 +799,7 @@ y = participants["NativeLanguage"]
 ```
 '''),
         markdown('''
-## 4 · Split before learning preprocessing parameters
+## 4: Split before learning preprocessing parameters
 
 Use 30% of participants as a test set. Set `random_state=42` and stratify by `y`.
 '''),
@@ -960,7 +820,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 ```
 '''),
         markdown('''
-## 5 · Fit a pipeline
+## 5: Fit a pipeline
 
 Create a pipeline containing `StandardScaler()` followed by
 `LogisticRegression(max_iter=1000)`. Fit it on the training rows and predict the test
@@ -987,7 +847,7 @@ predictions = model.predict(X_test)
 ```
 '''),
         markdown('''
-## 6 · Inspect errors, not only a score
+## 6: Inspect the errors as well as the score
 
 Create a 2 × 2 confusion matrix with labels ordered as `English`, `Other`. Then count
 how many test predictions are correct.
@@ -1018,7 +878,7 @@ With only seven test participants, one changed prediction moves the accuracy by 
 single split as a stable estimate.
 '''),
         markdown('''
-### Reflection · What would count as leakage here?
+### Reflection: What would count as leakage here?
 
 Name two ways information from the test participants could accidentally affect model
 training. What part of the pipeline protects against one of them?
@@ -1041,12 +901,10 @@ test results.
 
 
 NLP_TEXT = notebook(
-    "Notebook 4 · Text to features",
+    "Notebook 4: Text to features",
     [
         markdown('''
-Six short descriptions stand in for documents from a cognitive-science corpus. The
-notebook follows the path from text to a document–term matrix, TF–IDF vectors, and a
-three-dimensional token representation.
+Six short stories stand in for documents. The notebook follows the path from text to a document–term matrix, TF–IDF vectors, and a three-dimensional token representation.
 '''),
         hidden_code(FEEDBACK_CODE),
         code('''
@@ -1064,7 +922,7 @@ documents = [
 ]
 '''),
         markdown('''
-## 1 · Build a document–term matrix
+## 1: Build a document–term matrix
 
 Fit a `CountVectorizer` to `documents`. Store the sparse matrix in `counts` and the
 feature names in `terms`.
@@ -1088,7 +946,7 @@ terms = vectorizer.get_feature_names_out()
 ```
 '''),
         markdown('''
-## 2 · Read the matrix
+## 2: Read the matrix
 
 Calculate the number of counted tokens in each document. Then find the column index
 for `reaction` and extract that column as a one-dimensional array.
@@ -1111,7 +969,7 @@ reaction_counts = counts[:, reaction_index].toarray().ravel()
 ```
 '''),
         markdown('''
-## 3 · TF–IDF and document similarity
+## 3: TF–IDF and document similarity
 
 Fit `TfidfVectorizer` and calculate the full document-by-document cosine-similarity
 matrix.
@@ -1137,7 +995,7 @@ increase when documents share terms, weighted by how informative those terms are
 this small corpus.
 '''),
         markdown('''
-## 4 · Transfer the axis reasoning to token vectors
+## 4: Transfer the axis reasoning to token vectors
 
 The toy array below has shape `documents × tokens × embedding features`. Average over
 tokens to create one vector per document.
@@ -1159,7 +1017,7 @@ document_vectors = token_vectors.mean(axis=1)
 The token axis disappears, leaving one four-feature representation for each document.
 '''),
         markdown('''
-### Reflection · What did the representation forget?
+### Reflection: What did the representation forget?
 
 Compare the document–term matrix with the averaged token vectors. What information is
 absent from both? What additional information does the averaging operation discard?
@@ -1183,7 +1041,7 @@ representation depends on the linguistic question.
 for filename, nb in {
     "00_python_warmup.ipynb": INTRO,
     "01_lexical_decision_pandas.ipynb": LEXICAL_DECISION,
-    "02_real_eeg_arrays.ipynb": EEG,
+    "02_eeg_arrays.ipynb": EEG,
     "03_model_workflow.ipynb": MODEL_WORKFLOW,
     "04_nlp_text_features.ipynb": NLP_TEXT,
 }.items():

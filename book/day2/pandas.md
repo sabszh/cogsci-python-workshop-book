@@ -1,5 +1,11 @@
 # pandas and behavioural data
 
+This chapter shows how to move from individual trial rows to summaries that answer a
+research question. Each step has a purpose: inspect the table, check its columns,
+filter invalid observations, create useful variables, and summarise by participant or
+condition. Run the linked notebook alongside the examples so you can compare each
+intermediate table with your own output.
+
 This chapter introduces the pandas operations used with trial-level behavioural data.
 The corresponding Day 2 notebook is listed in the {doc}`../notebooks` section; there is
 no need to leave this chapter while following the examples below.

@@ -1,5 +1,5 @@
 title: Python for Cognitive Science
-author: Sabrina · Cognitive Science MSc workshop · CC BY 4.0
+author: "Sabrina: Cognitive Science MSc workshop: CC BY 4.0"
 copyright: "2026"
 
 execute:
@@ -43,5 +43,3 @@ sphinx:
     togglebutton_selector: ".toggle, .admonition.dropdown"
     html_last_updated_fmt: "%B %d, %Y"
     language: en
-    # Increment when reader interaction assets change so Sphinx refreshes their hashes.
-    reader_tools_revision: 2
