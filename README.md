@@ -5,9 +5,9 @@ refresher days followed by a Friday conversation about learning and expectations
 material prepares students for Advanced Cognitive Neuroscience, Natural Language
 Processing, and Data Science, Prediction and Forecasting.
 
-Published booklet: <https://sabszh.github.io/cogsci-python-workshop-book-migration/>
+Published booklet: <https://sabszh.github.io/cogsci-python-workshop-book/>
 
-Student setup page: <https://sabszh.github.io/cogsci-python-workshop-book-migration/setup.html>
+Student setup page: <https://sabszh.github.io/cogsci-python-workshop-book/setup.html>
 
 ## Open the workshop files
 
@@ -15,7 +15,7 @@ Clone or download the repository, then open the repository folder—not an indiv
 file—in VS Code. Student-facing material is organised as follows:
 
 ```text
-cogsci-python-workshop-book-migration/
+cogsci-python-workshop-book/
 ├── book/
 ├── notebooks/              # student notebooks — start here
 │   ├── workshop_scripts/   # CodeQuiz, Matplotlib, and capstone scripts

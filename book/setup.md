@@ -17,15 +17,15 @@ and keep the workshop folder in a location you can find again.
 
 1. Install [Visual Studio Code](https://code.visualstudio.com/).
 2. Install the VS Code **Python** and **Jupyter** extensions.
-3. [Download the workshop as a ZIP file](https://github.com/sabszh/cogsci-python-workshop-book-migration/archive/refs/heads/main.zip) or clone the [workshop repository](https://github.com/sabszh/cogsci-python-workshop-book-migration). See {doc}`resources/git_essentials` if you have not used Git before.
+3. [Download the workshop as a ZIP file](https://github.com/sabszh/cogsci-python-workshop-book/archive/refs/heads/main.zip) or clone the [workshop repository](https://github.com/sabszh/cogsci-python-workshop-book). See {doc}`resources/git_essentials` if you have not used Git before.
 4. Open the top-level **`notebooks/`** folder. The five numbered notebooks are the student exercises.
 4. Choose **one** environment route below.
 
 If you use Git, clone the repository with:
 
 ```bash
-git clone https://github.com/sabszh/cogsci-python-workshop-book-migration.git
-cd cogsci-python-workshop-book-migration
+git clone https://github.com/sabszh/cogsci-python-workshop-book.git
+cd cogsci-python-workshop-book
 ```
 
 ```{figure} _static/cartoons/xkcd-git.png

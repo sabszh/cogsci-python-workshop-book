@@ -17,8 +17,8 @@ Commit messages become part of the project's history, so `Complete EEG exercises
 Open a terminal in the directory where you keep projects, then clone the repository:
 
 ```bash
-git clone https://github.com/sabszh/cogsci-python-workshop-book-migration.git
-cd cogsci-python-workshop-book-migration
+git clone https://github.com/sabszh/cogsci-python-workshop-book.git
+cd cogsci-python-workshop-book
 ```
 
 Cloning creates a local folder and connects it to the GitHub repository named
