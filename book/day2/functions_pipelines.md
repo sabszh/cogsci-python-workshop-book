@@ -12,15 +12,15 @@ import numpy as np
 
 def compute_evoked(epochs, trial_axis=0):
     """Average a 3D epochs array over its trial dimension."""
-    epochs = np.asarray(epochs)
+    epochs = np.asarray(epochs)  # accept array-like input consistently
 
-    if epochs.ndim != 3:
+    if epochs.ndim != 3:         # fail early if dimensions are unexpected
         raise ValueError(
             "Expected a 3D array shaped trials × channels × time; "
             f"received {epochs.shape}"
         )
 
-    return epochs.mean(axis=trial_axis)
+    return epochs.mean(axis=trial_axis)  # remove the trial dimension
 ```
 
 ## Inputs, outputs, and side effects
@@ -29,7 +29,8 @@ Prefer returning a new result:
 
 ```python
 def remove_incorrect(trials):
-    return trials.loc[trials["correct"]].copy()
+    mask = trials["correct"]                 # Boolean mask for retained rows
+    return trials.loc[mask].copy()            # return an independent DataFrame
 ```
 
 Be careful with silent mutation: a function can change an object supplied by its
@@ -61,20 +62,20 @@ previous step, so the full analysis can be read from raw files to a summary tabl
 
 ```python
 def load_trials(path):
-    return pd.read_csv(path)
+    return pd.read_csv(path)                  # read the trial table
 
 def clean_trials(trials):
     return (
         trials
-        .dropna(subset=["reaction_time"])
-        .query("reaction_time > 0")
-        .copy()
+        .dropna(subset=["reaction_time"])    # remove missing reaction times
+        .query("reaction_time > 0")          # keep physically plausible values
+        .copy()                               # avoid mutating the input table
     )
 
 def summarise_participants(trials):
     return (
         trials
-        .groupby(["participant", "condition"], as_index=False)
+        .groupby(["participant", "condition"], as_index=False)  # unit of summary
         .agg(
             mean_rt=("reaction_time", "mean"),
             accuracy=("correct", "mean"),
@@ -89,9 +90,9 @@ condition is true, execution continues. If it is false, Python raises an
 `AssertionError` and stops at that line, showing that an assumption needs attention.
 
 ```python
-assert epochs.ndim == 3
-assert epochs.shape[1] == len(channel_names)
-assert trials["reaction_time"].ge(0).all()
+assert epochs.ndim == 3                              # epochs × channels × time
+assert epochs.shape[1] == len(channel_names)         # one label per channel
+assert trials["reaction_time"].ge(0).all()           # no negative times
 ```
 
 ::::{exercise} Refactor

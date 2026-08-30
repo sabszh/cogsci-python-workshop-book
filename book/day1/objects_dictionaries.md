@@ -7,16 +7,20 @@ result = object.method(arguments)
 value = object.attribute
 ```
 
+The object is the thing being acted on. The dot asks Python to look inside that object.
+Parentheses call a method and pass arguments; no parentheses means that you are only
+looking up the method or attribute.
+
 ## Learn from `Path`
 
 ```python
 from pathlib import Path
 
-path = Path("data/trials.csv")
+path = Path("data/trials.csv")  # create a Path object for one file
 
-type(path)      # class of the object
-path.name       # attribute
-path.exists()   # method call
+type(path)      # the class of the object
+path.name       # an attribute: "trials.csv"
+path.exists()   # a method call: True or False
 ```
 
 Parentheses matter: `path.exists` refers to the method itself; `path.exists()` calls it.
@@ -50,6 +54,12 @@ dir(model)
 help(model.fit)
 ```
 
+For example, a fitted model is still the same kind of object as before fitting, but it
+now has learned attributes such as coefficients. A Matplotlib `Axes` object stores the
+plotting area and provides methods such as `.plot()` and `.set_xlabel()`. A pandas
+`DataFrame` stores tabular data and provides methods such as `.head()` and `.groupby()`.
+This is why the same object-method-attribute pattern appears throughout the workshop.
+
 ## Dictionaries for research metadata
 
 A dictionary stores named pieces of information together. This makes it useful for
@@ -59,10 +69,10 @@ participant.
 
 ```python
 participant = {
-    "id": "P07",
-    "condition": "control",
-    "age": 24,
-    "files": {
+    "id": "P07",                    # participant label
+    "condition": "control",         # experimental condition
+    "age": 24,                       # participant metadata
+    "files": {                       # related file paths
         "epochs": "P07_epochs.npy",
         "trials": "P07_trials.csv",
     },
@@ -72,10 +82,10 @@ participant = {
 Access and update values:
 
 ```python
-participant["condition"]
-participant["files"]["epochs"]
-participant.get("handedness", "unknown")
-participant["excluded"] = False
+participant["condition"]                    # retrieve one value
+participant["files"]["epochs"]             # retrieve a nested value
+participant.get("handedness", "unknown")   # fallback if the key is absent
+participant["excluded"] = False             # add or update a key
 ```
 
 <div class="live-python">
@@ -118,6 +128,12 @@ The outer dictionary is copied, but the nested list is shared. The result is `{'
 ::::
 
 ## Small class-reading exercise
+
+The workshop mostly asks you to *use* classes supplied by Python libraries. You can read
+an API without writing the class yourself. A class is a template for objects; an instance
+is one concrete object created from that template. In Cognitive Science code, examples
+include a `Path` for one data file, a `DataFrame` for one table, an `Axes` for one plot,
+and a fitted estimator for one modelling workflow.
 
 ::::{exercise} Read an object-oriented API
 :label: class-reading

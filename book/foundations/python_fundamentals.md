@@ -24,14 +24,32 @@ included = True
 missing_value = None
 ```
 
+Read the assignments as short statements about the study: the participant is P07, the
+experiment contains 80 trials, the signal was sampled at 500 Hz, this record is included,
+and a value is currently missing. The comments below show the role of each line:
+
+```python
+participant_id = "P07"  # a string label, not a number to calculate with
+n_trials = 80           # an integer count of trials
+sampling_rate = 500.0  # a floating-point measurement
+included = True        # a Boolean decision
+missing_value = None   # explicitly no value has been recorded
+```
+
 Inspect rather than guess:
 
 ```python
 type(participant_id)   # str
-type(n_trials)        # int
+type(n_trials)         # int
 type(sampling_rate)   # float
 type(included)        # bool
 ```
+
+`int` means an integer with no decimal part. Use it for counts, indices, and identifiers
+that are genuinely numeric. `float` represents a number with a fractional part and is
+common for reaction times, amplitudes, probabilities, and sampling rates. A participant
+ID such as `"07"` is usually better kept as a string: converting it to `7` would lose the
+leading zero and might make it look like a quantity.
 
 Python is dynamically typed: the object has a type, while a name can later refer to a different object. Changing types without a good reason usually makes research code harder to follow.
 
@@ -39,6 +57,21 @@ Python is dynamically typed: the object has a type, while a name can later refer
 :class: tip
 Prefer names that carry scientific meaning: `reaction_times` is more informative than `x`, and `trial_axis` is more informative than `a`.
 ```
+
+Python naming conventions make code easier to scan:
+
+```python
+participant_ids = ["P01", "P02"]  # snake_case for variables and functions
+MAX_TRIALS = 120                   # capitals for a constant used throughout a script
+
+def mean_reaction_time(values):    # verbs or actions make function names clear
+    return sum(values) / len(values)
+```
+
+Avoid names that hide meaning or collide with Python built-ins. `list`, `str`, `sum`, and
+`id` already have useful meanings in Python, so names such as `trial_list` and
+`participant_id` are safer. Names are case-sensitive: `rt_ms` and `RT_ms` are different
+names, but using one style consistently prevents mistakes.
 
 ## Operators and comparisons
 
@@ -69,9 +102,9 @@ participant = "P07"
 condition = "control"
 label = f"{participant}_{condition}"
 
-label.lower()
-label.split("_")
-label.replace("control", "experimental")
+lower_label = label.lower()                    # return a new lower-case string
+parts = label.split("_")                       # return a list: ["P07", "control"]
+new_label = label.replace("control", "experimental")  # return a new string
 ```
 
 A method such as `.replace()` returns a new string because it does not modify the
@@ -163,6 +196,10 @@ else:
     status = "slow"
 ```
 
+Python checks the conditions from top to bottom and stops at the first true branch. The
+`status` variable is therefore one label describing the reaction time. In a real analysis,
+the threshold should be documented rather than appearing as an unexplained magic number.
+
 Indentation defines the block. Four spaces is the standard.
 
 Values such as `False`, `None`, `0`, `0.0`, `""`, and empty collections are *falsy*. Be explicit when zero and missing have different meanings.
@@ -212,7 +249,8 @@ Functions give a transformation a name:
 ```python
 def milliseconds_to_seconds(milliseconds):
     """Convert a duration in milliseconds to seconds."""
-    return milliseconds / 1000
+    seconds = milliseconds / 1000  # convert the unit before returning
+    return seconds
 ```
 
 The docstring states the contract. The parameters are local names, and `return` sends a value back to the caller.
@@ -220,6 +258,10 @@ The docstring states the contract. The parameters are local names, and `return` 
 ```python
 seconds = milliseconds_to_seconds(450)
 ```
+
+The caller does not need to know how the conversion is implemented. This separation is
+useful in research code: one function can be tested independently, then reused for every
+participant or trial.
 
 Default arguments should normally be immutable:
 
@@ -257,6 +299,70 @@ def positive_mean(values):
 ```
 
 Raise an error when continuing would produce a misleading scientific result.
+
+## Classes in Cognitive Science code
+
+A class is a recipe for creating objects with related data and behaviour. You will often
+use classes from libraries without defining one yourself. For example, a pandas
+`DataFrame`, a Matplotlib `Axes`, a pathlib `Path`, and a scikit-learn estimator are all
+objects created from classes.
+
+The class describes what an object can contain and do. An instance is one concrete object:
+
+```python
+class Participant:
+    """Store the small amount of metadata used in this example."""
+
+    def __init__(self, participant_id, age, condition):
+        self.participant_id = participant_id  # data stored on this instance
+        self.age = age
+        self.condition = condition
+
+    def describe(self):
+        """Return a readable summary for a log or notebook output."""
+        return f"{self.participant_id}: {self.condition}, age {self.age}"
+
+
+participant = Participant("P07", 24, "control")
+print(participant.condition)  # attribute access retrieves stored data
+print(participant.describe()) # method call uses the stored data
+```
+
+`__init__` runs when an instance is created. `self` refers to the particular instance
+being used. `self.age` and `self.condition` are attributes, while `describe` is a method.
+Two instances share the class definition but hold different values:
+
+```python
+p07 = Participant("P07", 24, "control")
+p08 = Participant("P08", 31, "word")
+
+print(p07.condition)  # control
+print(p08.condition)  # word
+```
+
+In day-to-day workshop work, prefer existing library classes unless a small class makes
+the research object clearer. A class can be useful when a participant, recording, or
+experiment has several related fields and operations. A dictionary is often simpler for
+one-off metadata. The design question is: will this object have a stable set of data and
+behaviour that should travel together?
+
+The same object pattern appears in library code:
+
+```python
+from pathlib import Path
+
+data_path = Path("data")              # an instance of pathlib.Path
+print(data_path.exists())              # call a method on that object
+
+from sklearn.linear_model import LogisticRegression
+
+model = LogisticRegression(max_iter=1000)  # create an estimator instance
+model.fit(X_train, y_train)                 # fit stores learned attributes on it
+predictions = model.predict(X_test)         # use the fitted object for new data
+```
+
+You do not need to memorise the class implementation. You need to recognise that the
+object has a type, attributes, and methods, and know how to inspect its documentation.
 
 ## A complete small example
 

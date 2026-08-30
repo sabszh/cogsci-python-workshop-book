@@ -1,5 +1,10 @@
 # Python for Cognitive Science
 
+```{admonition} Joining the workshop?
+:class: important
+Complete the {doc}`setup guide <setup>` on your own laptop before Day 1.
+```
+
 ```{admonition} Two Python days. One shared foundation.
 :class: tip
 Refresh the Python you already know and make it reliable enough for cognitive neuroscience, natural language processing, and data science.
@@ -13,10 +18,10 @@ This is an interactive workshop for incoming MSc Cognitive Science students at A
 
 The courses use Python for different scientific purposes, but they rely on the same fundamentals: values and types, collections, control flow, functions, objects, files, arrays, tables, visualisation, and reproducible environments. This workshop revisits that shared foundation before connecting it to course-specific examples.
 
-**Day 3 is a facilitated classroom day about learning, skills, and AI.** It uses group
-discussion and individual reflection rather than a coding notebook. Most of the work
-happens in the room, with prompts that help students think about independent learning,
-academic expectations, and deliberate use of AI tools.
+**Day 3 is an open conversation about learning, expectations for the Master's degree,
+and the courses ahead.** We will talk about what students want to learn, which skills
+they want to build, and how they want to approach the start of the programme. It is not
+a coding notebook day.
 
 It is not designed as a first introduction to programming. The aim is to make familiar ideas available again, fill in gaps, and build dependable habits for reading and debugging research code. See {doc}`course_overview` for a map of what each course is likely to require.
 
@@ -40,13 +45,12 @@ By the end of the workshop, you can:
 Each block follows the same rhythm:
 
 1. **Predict** before running the code.
-2. **Discuss** plausible answers anonymously.
+2. **Discuss** plausible answers as a group.
 3. **Run** and inspect the result.
 4. **Explain** what Python did and why.
 5. **Vary** the example independently.
 
-CodeQuiz provides short anonymous checkpoints. The notebooks are where you write, run,
-debug, and vary the code yourself.
+The notebooks are where you write, run, debug, and vary the code yourself.
 
 ```{figure} _static/cartoons/xkcd-python.png
 :alt: Two people discuss how learning Python apparently lets one of them fly by importing antigravity.

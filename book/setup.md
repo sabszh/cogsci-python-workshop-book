@@ -7,13 +7,26 @@ see the [UCloud user guide](https://docs.cloud.sdu.dk/) before launching an app.
 
 Complete one route before Day 1. If a check fails and ChatGPT is not providing useful help, email szh@cc.au.dk.
 
+```{admonition} Before the workshop
+:class: important
+Complete this page before Day 1. Bring the laptop on which you completed the setup,
+and keep the workshop folder in a location you can find again.
+```
+
 ## What you need
 
 1. Install [Visual Studio Code](https://code.visualstudio.com/).
 2. Install the VS Code **Python** and **Jupyter** extensions.
-3. Install the supplied **CodeQuiz Workshop** extension.
-4. Download or clone this workshop repository from GitHub. See {doc}`resources/git_essentials` if you have not used Git before.
-5. Choose **one** environment route below.
+3. [Download the workshop as a ZIP file](https://github.com/sabszh/cogsci-python-workshop-book-migration/archive/refs/heads/main.zip) or clone the [workshop repository](https://github.com/sabszh/cogsci-python-workshop-book-migration). See {doc}`resources/git_essentials` if you have not used Git before.
+4. Open the top-level **`notebooks/`** folder. The five numbered notebooks are the student exercises.
+4. Choose **one** environment route below.
+
+If you use Git, clone the repository with:
+
+```bash
+git clone https://github.com/sabszh/cogsci-python-workshop-book-migration.git
+cd cogsci-python-workshop-book-migration
+```
 
 ```{figure} _static/cartoons/xkcd-git.png
 :alt: Three people discuss Git; one admits to relying on memorised commands and downloading a fresh copy after errors.
@@ -340,12 +353,3 @@ conda activate mne_acn
 ```
 
 This is a course-specific environment. Keep the general workshop environment separate so that changing an ACN dependency does not affect other work.
-
-## Join CodeQuiz
-
-On the workshop network:
-
-1. Open the CodeQuiz activity-bar icon.
-2. Select **Join session**.
-3. Enter the six-character code shown by the instructor.
-4. Exercises will open as editable Python scripts.

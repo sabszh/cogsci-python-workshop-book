@@ -13,19 +13,19 @@ is the complete canvas; `ax` is one plotting area with methods such as `.plot()`
 import matplotlib.pyplot as plt
 import numpy as np
 
-times = np.linspace(-0.2, 0.8, 500)
-evoked = epochs.mean(axis=0)
+times = np.linspace(-0.2, 0.8, 500)  # time points in seconds
+evoked = epochs.mean(axis=0)         # average over trials
 
-fig, ax = plt.subplots(figsize=(8, 4))
-ax.plot(times, evoked[0], label="channel 0")
-ax.axvline(0, color="black", linestyle="--", linewidth=1)
+fig, ax = plt.subplots(figsize=(8, 4))       # create a figure and axes
+ax.plot(times, evoked[0], label="channel 0") # plot one channel
+ax.axvline(0, color="black", linestyle="--", linewidth=1)  # event time
 ax.set(
     title="Evoked response",
     xlabel="Time (s)",
     ylabel="Amplitude",
 )
-ax.legend()
-fig.tight_layout()
+ax.legend()                  # show the condition label
+fig.tight_layout()           # reduce clipping around labels
 ```
 
 ## Plot two conditions
@@ -34,13 +34,13 @@ The shaded region below marks the distance between two condition averages. It is
 an uncertainty interval unless the two arrays actually contain interval boundaries.
 
 ```python
-fig, ax = plt.subplots(figsize=(8, 4))
+fig, ax = plt.subplots(figsize=(8, 4))       # new figure for both conditions
 
-ax.plot(times, evoked_a[0], label="condition A")
-ax.plot(times, evoked_b[0], label="condition B")
-ax.fill_between(times, evoked_a[0], evoked_b[0], alpha=0.15)
-ax.axvline(0, color="black", linestyle="--")
-ax.legend()
+ax.plot(times, evoked_a[0], label="condition A")  # first condition
+ax.plot(times, evoked_b[0], label="condition B")  # second condition
+ax.fill_between(times, evoked_a[0], evoked_b[0], alpha=0.15)  # between traces
+ax.axvline(0, color="black", linestyle="--")      # event marker
+ax.legend()                                         # identify the lines
 ```
 
 <div class="figure-explorer">
@@ -159,15 +159,16 @@ conditions implies a meaningful continuum. Direct value labels can reduce relian
 colour.
 ::::
 
-Try your changes in the browser before comparing with the solution:
-
 <div class="live-python">
-  <p><strong>Run your calculation:</strong> edit the code and run it to inspect the values behind your plot.</p>
-  <textarea aria-label="Editable plot repair example">conditions = ["congruent", "incongruent", "neutral"]
+  <textarea aria-label="Editable plot repair example">import matplotlib.pyplot as plt
+
+conditions = ["congruent", "incongruent", "neutral"]
 mean_rt = [515, 681, 552]
-print("slowest condition:", conditions[mean_rt.index(max(mean_rt))])
-print("difference from congruent:", mean_rt[1] - mean_rt[0], "ms")</textarea>
-  <button type="button">Run Python</button>
+fig, ax = plt.subplots()
+ax.plot(conditions, mean_rt, "r*-.")
+plt.show()
+fig.savefig("/tmp/live_plot.png", dpi=140, bbox_inches="tight")</textarea>
+  <button type="button" data-idle-label="Run plot">Run plot</button>
   <pre aria-live="polite">Output will appear here.</pre>
 </div>
 
@@ -219,8 +220,26 @@ than typing `166` into the annotation.
 annotation with `mean_rt[1] - mean_rt[0]`.
 ::::
 
-Use the same workflow here: calculate the difference in Python, run it, and then add
-the result to your figure annotation.
+Edit the code below, run it, and inspect the figure before comparing with the solution.
+
+<div class="live-python">
+  <textarea aria-label="Editable uncertainty plot example">import numpy as np
+import matplotlib.pyplot as plt
+
+conditions = ["congruent", "incongruent", "neutral"]
+mean_rt = np.array([515, 681, 552])
+sem_rt = np.array([18, 24, 20])
+difference = mean_rt[1] - mean_rt[0]
+
+fig, ax = plt.subplots(figsize=(7, 4))
+ax.errorbar(conditions, mean_rt, yerr=sem_rt, fmt="o", capsize=5)
+ax.annotate(f"+{difference:.0f} ms", xy=(1, mean_rt[1]), xytext=(1, mean_rt[1] + 35), arrowprops={"arrowstyle": "->"})
+ax.set(title="Stroop interference", ylabel="Mean reaction time (ms)")
+fig.savefig("/tmp/live_plot.png", dpi=140, bbox_inches="tight")
+plt.show()</textarea>
+  <button type="button" data-idle-label="Run plot">Run plot</button>
+  <pre aria-live="polite">Output will appear here.</pre>
+</div>
 
 ::::{solution} uncertainty-plot
 For example:
@@ -286,6 +305,29 @@ answer different questions from the same array.
 line per participant. Use `mean_rt` and `sem_rt` for the group summary. If the legend
 becomes crowded, label only the conditions and explain the grey lines in the caption.
 ::::
+
+Edit and run this starter version in the browser:
+
+<div class="live-python">
+  <textarea aria-label="Editable participant figure example">import numpy as np
+import matplotlib.pyplot as plt
+
+rng = np.random.default_rng(4)
+conditions = ["congruent", "incongruent", "neutral"]
+participant_rt = rng.normal([515, 681, 552], [22, 28, 24], size=(8, 3))
+mean_rt = participant_rt.mean(axis=0)
+
+fig, ax = plt.subplots(figsize=(7, 4))
+for participant in participant_rt:
+    ax.plot(conditions, participant, color="0.75", marker="o")
+ax.plot(conditions, mean_rt, color="#156082", marker="D", linewidth=3, label="Mean")
+ax.set(title="Participant reaction times", xlabel="Condition", ylabel="Reaction time (ms)")
+ax.legend(frameon=False)
+fig.savefig("/tmp/live_plot.png", dpi=140, bbox_inches="tight")
+plt.show()</textarea>
+  <button type="button" data-idle-label="Run plot">Run plot</button>
+  <pre aria-live="polite">Output will appear here.</pre>
+</div>
 
 ::::{solution} figure-showdown
 There is no single required geometry, but the saved figure should pass these checks:

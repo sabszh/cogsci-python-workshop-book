@@ -216,6 +216,10 @@ article.bd-article div.highlight {
   font: 0.9rem/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
+.live-python--large textarea {
+  min-height: 34rem;
+}
+
 .live-python button {
   margin-top: 0.65rem;
   padding: 0.45rem 0.75rem;
@@ -241,6 +245,13 @@ article.bd-article div.highlight {
   border-radius: 0.35rem;
   background: #18212f;
   color: #f3f6fa;
+}
+
+.live-python-output-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-top: 1rem;
 }
 
 .axis-explorer label,

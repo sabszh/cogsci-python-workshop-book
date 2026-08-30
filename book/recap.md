@@ -104,6 +104,6 @@ Ask these questions at each important step:
 
 ## Day 3
 
-Day 3 is a facilitated classroom day for group discussions and reflection about
-learning, skill-building, academic expectations, and the pressure created by available
-AI tools. See {doc}`day3/index` for the discussion themes and closing reflection.
+Day 3 is an open conversation about learning, expectations for the Master's degree, the
+courses ahead, and what students want to learn. See {doc}`day3/index` for the discussion
+themes and questions for the room.

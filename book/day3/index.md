@@ -1,8 +1,11 @@
 # Day 3: Learning and reflection
 
-Day 3 is a classroom day for talking about learning, skills, and the pressure created
-by available AI tools. Most of the work happens through small-group conversations,
-whole-class discussion, and a short written reflection.
+Day 3 is an open conversation about learning, expectations for the Master's degree, and
+the courses ahead. We will talk about what students want to learn, which skills they
+want to build, and what they want to get out of the programme.
+
+There is no required notebook and no fixed set of answers. We will use the questions
+and experiences in the room to guide the discussion.
 
 ## Questions for the room
 
@@ -11,13 +14,8 @@ whole-class discussion, and a short written reflection.
 - Which skills should remain yours even when a tool can produce an answer quickly?
 - When does a tool support learning, and when does it replace the practice?
 
-## AI and academic expectations
+## Courses and expectations
 
-AI is available, but you do not have to use it. The academic expectations remain the
-same: learn the concepts, practise the skills, and be able to explain and evaluate
-your own work. Use tools deliberately, and check what they produce.
-
-## Closing reflection
-
-Write down one skill you want to strengthen, one sign that you understand it, and one
-way you will make time to practise it during the degree.
+Look ahead at the courses on the programme and discuss what you expect from yourself,
+what you want to learn, and which skills you want to strengthen. Questions about tools,
+including AI, can be part of the conversation when they are useful to the group.

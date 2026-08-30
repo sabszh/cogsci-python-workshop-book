@@ -20,8 +20,8 @@ documents = [
     {"id": "D02", "text": "The participant hesitated.", "label": "slow"},
 ]
 
-texts = [document["text"] for document in documents]
-labels = [document["label"] for document in documents]
+texts = [document["text"] for document in documents]    # one text per document
+labels = [document["label"] for document in documents]  # keep the target labels
 ```
 
 ## Preprocessing as a function
@@ -36,10 +36,10 @@ Try `simple_tokens("Don't re-test this!")` and inspect where the simple rules fa
 
 ```python
 def simple_tokens(text):
-    cleaned = text.lower().replace(".", "")
-    return cleaned.split()
+    cleaned = text.lower().replace(".", "")  # normalise case and remove full stops
+    return cleaned.split()                    # split on whitespace
 
-tokenised = [simple_tokens(text) for text in texts]
+tokenised = [simple_tokens(text) for text in texts]  # apply the same rule to all texts
 ```
 
 ```{figure} ../_static/cartoons/xkcd-regular-expressions.png
@@ -63,11 +63,11 @@ transformed with that same fitted object so their columns retain the same meanin
 ```python
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-vectorizer = TfidfVectorizer()
-X = vectorizer.fit_transform(texts)
+vectorizer = TfidfVectorizer()            # object that learns a vocabulary
+X = vectorizer.fit_transform(texts)       # documents × vocabulary matrix
 
-print(X.shape)
-print(vectorizer.get_feature_names_out())
+print(X.shape)                            # rows are documents
+print(vectorizer.get_feature_names_out()) # columns are vocabulary terms
 ```
 
 Again we see:
@@ -90,9 +90,9 @@ shape is `documents × tokens × hidden features`; a later pooling decision dete
 how token representations become document representations.
 
 ```python
-tokens = tokenizer(texts, padding=True, return_tensors="pt")
-outputs = model(**tokens)
-embeddings = outputs.last_hidden_state
+tokens = tokenizer(texts, padding=True, return_tensors="pt")  # integer tensors
+outputs = model(**tokens)                                      # pass named inputs
+embeddings = outputs.last_hidden_state                         # one vector per token
 ```
 
 You do not need to understand the transformer yet. You do need to ask:

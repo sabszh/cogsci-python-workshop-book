@@ -16,28 +16,28 @@ The small example file is available as {download}`sample trial data <../data/tri
 from pathlib import Path
 import pandas as pd
 
-trials_path = Path("book/data/trials.csv")
-trials = pd.read_csv(trials_path)
+trials_path = Path("book/data/trials.csv")  # locate the CSV file
+trials = pd.read_csv(trials_path)            # load rows into a DataFrame
 ```
 
 ## Inspect before transforming
 
 ```python
-trials.head()
-trials.shape
-trials.columns
-trials.dtypes
-trials.isna().sum()
+trials.head()          # preview the first rows
+trials.shape           # number of rows and columns
+trials.columns         # available column labels
+trials.dtypes          # type stored in each column
+trials.isna().sum()    # count missing values by column
 ```
 
 ## Select and filter
 
 ```python
-reaction_times = trials["reaction_time"]
-features = trials[["reaction_time", "correct"]]
+reaction_times = trials["reaction_time"]              # select one Series
+features = trials[["reaction_time", "correct"]]      # select two columns
 
-correct_trials = trials.loc[trials["correct"]]
-condition_a = trials.query("condition == 'A'")
+correct_trials = trials.loc[trials["correct"]]        # keep correct trials
+condition_a = trials.query("condition == 'A'")        # keep condition A
 ```
 
 <div class="live-python">
@@ -67,7 +67,7 @@ trial. State the unit of one row before merging the result or fitting a model.
 ```python
 participant_summary = (
     trials
-    .groupby(["participant", "condition"], as_index=False)
+    .groupby(["participant", "condition"], as_index=False)  # define the unit
     .agg(
         mean_rt=("reaction_time", "mean"),
         accuracy=("correct", "mean"),
@@ -84,9 +84,11 @@ Averaging every trial together weights participants with more retained trials mo
 ## Missing values
 
 ```python
-trials["reaction_time"].isna()
-trials.dropna(subset=["reaction_time"])
-trials["reaction_time"].fillna(trials["reaction_time"].median())
+trials["reaction_time"].isna()                         # Boolean missingness mask
+trials.dropna(subset=["reaction_time"])                # remove missing rows
+trials["reaction_time"].fillna(                         # replace with a summary value
+    trials["reaction_time"].median()
+)
 ```
 
 Do not impute automatically. First ask why the value is missing.
@@ -94,11 +96,11 @@ Do not impute automatically. First ask why the value is missing.
 ## Merge metadata
 
 ```python
-participants = pd.read_csv("book/data/participants.csv")
+participants = pd.read_csv("book/data/participants.csv")  # participant metadata
 analysis = participant_summary.merge(
     participants,
-    on="participant",
-    validate="many_to_one",
+    on="participant",                  # matching key in both tables
+    validate="many_to_one",             # each participant has one metadata row
 )
 ```
 

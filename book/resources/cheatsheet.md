@@ -79,3 +79,21 @@ model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 score = model.score(X_test, y_test)
 ```
+
+## Reusable scripts
+
+```python
+from pathlib import Path
+
+def main():
+    input_path = Path("data/trials.csv")
+    result = run_analysis(input_path)
+    save_result(result)
+
+if __name__ == "__main__":
+    main()
+```
+
+```bash
+python analyse_trials.py --help
+```

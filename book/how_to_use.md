@@ -18,28 +18,23 @@ If a chapter is familiar, begin with its exercises. If your prediction is wrong 
 - Add temporary `print`, `type`, and `.shape` checks.
 - Keep your first answer when the solution is revealed; compare them.
 
-## CodeQuiz and notebooks
+## Notebook work
 
-The two activities have different tempos:
-
-| CodeQuiz | Notebook |
-|---|---|
-| one focused question | a connected analysis |
-| answer before running | experiment by running code |
-| anonymous class response | individual work |
-| reveals patterns across the room | reveals the steps in your own reasoning |
-| usually 2–5 minutes | usually 15–35 minutes |
+The notebooks are the main place to practise. Each notebook moves from a small
+prediction to runnable code, inspection, and an independent variation. Work through the
+examples in order when you are learning a concept; return to a particular exercise later
+when you need a refresher.
 
 A typical cycle is:
 
-1. Open the quiz marker in the instructor's Python script.
-2. Predict the output, missing expression, shape, or likely bug.
-3. Submit anonymously in VS Code.
-4. Discuss the answer distribution before revealing the solution.
-5. Test the underlying idea in the notebook.
-6. Return to a short quiz with a changed example.
+1. Read the prompt and predict the output, type, shape, or likely bug.
+2. Write or edit the smallest piece of code that tests the idea.
+3. Run the cell and inspect the result.
+4. Compare the result with your prediction.
+5. Change one input or condition and run it again.
 
-The first quiz is not a mini-exam. Its purpose is to make everyone commit to a mental model. The second shows whether that model survived contact with the code.
+The aim is not to finish as quickly as possible. It is to make your mental model more
+reliable through small, repeatable experiments.
 
 ## Exercise labels
 
@@ -85,7 +80,7 @@ Spend a few minutes investigating before viewing a solution:
 
 ## Your private answers
 
-Every exercise includes a **Your answer** field. Write your prediction before opening the solution, then leave the field visible while you compare the two.
+Most exercises include a **Your answer** field. Write your prediction before opening the solution, then leave the field visible while you compare the two. The visualisation challenges use an editable Python plot instead, so you can make and test your changes directly in the page.
 
 Your answer is saved automatically in this browser using local storage. It is not submitted to the instructor or uploaded to the workshop site. Notes do not automatically follow you to another browser, device, or private-browsing session, and clearing browser site data removes them. Use **Clear note** to remove an individual answer.
 

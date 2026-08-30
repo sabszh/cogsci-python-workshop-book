@@ -8,14 +8,14 @@ execute:
 only_build_toc_files: true
 
 html:
-  baseurl: "https://YOUR-GITHUB-USERNAME.github.io/cogsci-python-workshop"
+  baseurl: "https://sabszh.github.io/cogsci-python-workshop-book-migration"
   use_repository_button: true
   use_issues_button: true
   use_edit_page_button: true
   home_page_in_navbar: true
 
 repository:
-  url: "https://github.com/YOUR-GITHUB-USERNAME/cogsci-python-workshop"
+  url: "https://github.com/sabszh/cogsci-python-workshop-book-migration"
   path_to_book: book
   branch: main
 

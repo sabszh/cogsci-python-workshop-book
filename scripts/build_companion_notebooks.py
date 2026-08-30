@@ -9,7 +9,7 @@ import nbformat as nbf
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / "book" / "notebooks"
+OUTPUT = ROOT / "notebooks"
 OUTPUT.mkdir(parents=True, exist_ok=True)
 
 
@@ -17,7 +17,7 @@ FEEDBACK_CODE = '''
 from pathlib import Path
 import sys
 
-for _candidate in (Path.cwd(), Path.cwd() / "book" / "notebooks"):
+for _candidate in (Path.cwd(), Path.cwd() / "notebooks"):
     if (_candidate / "workshop_checks.py").exists():
         sys.path.insert(0, str(_candidate))
         break

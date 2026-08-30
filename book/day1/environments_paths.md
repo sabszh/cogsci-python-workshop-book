@@ -50,8 +50,8 @@ Inspect them:
 import sys
 from pathlib import Path
 
-print("Interpreter:", sys.executable)
-print("Working directory:", Path.cwd())
+print("Interpreter:", sys.executable)       # Python executable in use
+print("Working directory:", Path.cwd())     # base for relative paths
 ```
 
 `Path.cwd()` returns the current working directory as a `Path` object. It may change
@@ -76,13 +76,13 @@ No folder or file is created by these expressions. They only construct an addres
 ```python
 from pathlib import Path
 
-project = Path.cwd()
-data_dir = project / "data"
-participant_id = "P07"
-epochs_file = data_dir / f"{participant_id}_epochs.npy"
+project = Path.cwd()                         # start at the project folder
+data_dir = project / "data"                  # append the data folder
+participant_id = "P07"                       # identify one participant
+epochs_file = data_dir / f"{participant_id}_epochs.npy"  # build the filename
 
-print(epochs_file)
-print(epochs_file.exists())
+print(epochs_file)                            # display the constructed path
+print(epochs_file.exists())                   # check whether the file exists
 ```
 
 If the working directory is `/Users/name/project`, the resulting value is equivalent
@@ -101,11 +101,11 @@ the value as a `Path` also gives access to filesystem methods.
 Useful attributes and methods:
 
 ```python
-epochs_file.name
-epochs_file.stem
-epochs_file.suffix
-epochs_file.parent
-epochs_file.with_suffix(".csv")
+epochs_file.name                           # filename with extension
+epochs_file.stem                           # filename without extension
+epochs_file.suffix                         # extension, such as .npy
+epochs_file.parent                         # containing folder
+epochs_file.with_suffix(".csv")            # new path, original unchanged
 ```
 
 <div class="live-python">
@@ -134,10 +134,10 @@ does not rename the original file.
 objects; `sorted` makes their order deterministic.
 
 ```python
-epoch_files = sorted(data_dir.glob("*_epochs.npy"))
+epoch_files = sorted(data_dir.glob("*_epochs.npy"))  # find matching files
 
-for path in epoch_files:
-    print(path.stem)
+for path in epoch_files:                           # process each path
+    print(path.stem)                                # show the participant name
 ```
 
 ::::{exercise} Robust project path

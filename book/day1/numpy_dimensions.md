@@ -15,11 +15,11 @@ trials × channels × time
 ```python
 import numpy as np
 
-rng = np.random.default_rng(42)
-epochs = rng.normal(size=(80, 32, 500))
+rng = np.random.default_rng(42)          # fixed seed makes this example repeatable
+epochs = rng.normal(size=(80, 32, 500))  # trials × channels × time
 
-print(epochs.shape)  # (80, 32, 500)
-print(epochs.ndim)   # 3
+print(epochs.shape)  # array dimensions: (80, 32, 500)
+print(epochs.ndim)   # number of dimensions: 3
 ```
 
 | Axis | Meaning | Size |
@@ -56,10 +56,10 @@ print(&quot;output:&quot;, evoked.shape)</textarea>
 ## Indexing removes selected dimensions
 
 ```python
-epochs[0].shape          # one trial → (32, 500)
-epochs[:, 0, :].shape    # one channel, all trials → (80, 500)
-epochs[:, :, 100].shape  # one time point → (80, 32)
-epochs[0, 0, 100]        # one scalar
+epochs[0].shape          # first trial; trial axis removed
+epochs[:, 0, :].shape    # channel 0 across all trials and times
+epochs[:, :, 100].shape  # time sample 100 across trials and channels
+epochs[0, 0, 100]        # one scalar: one trial, channel, and time point
 ```
 
 <div class="live-python">
@@ -81,8 +81,8 @@ you want to keep. Write the meaning above every dimension before calculating a m
 ```
 
 ```python
-evoked = epochs.mean(axis=0)
-print(evoked.shape)  # (32, 500)
+evoked = epochs.mean(axis=0)       # average across trials
+print(evoked.shape)                # (32, 500): trials axis removed
 ```
 
 We averaged trials, so the trial dimension disappeared. This is both a Python
@@ -120,11 +120,11 @@ dimension instead of requiring you to copy the data yourself.
 Subtract a baseline for every trial and channel:
 
 ```python
-baseline = epochs[:, :, :100].mean(axis=2, keepdims=True)
-corrected = epochs - baseline
+baseline = epochs[:, :, :100].mean(axis=2, keepdims=True)  # one baseline per trial/channel
+corrected = epochs - baseline                              # broadcast across time
 
-print(baseline.shape)   # (80, 32, 1)
-print(corrected.shape)  # (80, 32, 500)
+print(baseline.shape)   # (80, 32, 1): keepdims preserves the time axis
+print(corrected.shape)  # (80, 32, 500): same shape as the input
 ```
 
 NumPy stretches the final size-one dimension across time.
@@ -147,8 +147,8 @@ print(&quot;corrected:&quot;, corrected.shape)</textarea>
 Before a transformation, write:
 
 ```python
-print("epochs:", epochs.shape)
-print("baseline:", baseline.shape)
+print("epochs:", epochs.shape)       # input shape
+print("baseline:", baseline.shape)   # shape used for broadcasting
 ```
 
 If you cannot describe what every dimension means, pause before continuing.

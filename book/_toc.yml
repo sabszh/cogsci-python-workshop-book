@@ -13,6 +13,7 @@ parts:
     chapters:
       - file: foundations/python_fundamentals
       - file: foundations/reading_documentation
+      - file: foundations/good_coding_practices
   - caption: Notebooks
     chapters:
       - file: notebooks

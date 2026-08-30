@@ -18,9 +18,9 @@ y.shape → samples
 ```
 
 ```python
-features = ["mean_rt", "accuracy", "age"]
-X = analysis[features]
-y = analysis["group"]
+features = ["mean_rt", "accuracy", "age"]  # input columns
+X = analysis[features]                       # feature matrix: rows are samples
+y = analysis["group"]                       # target aligned with each row
 ```
 
 ## Split before fitting
@@ -29,11 +29,10 @@ y = analysis["group"]
 from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(
-    X,
-    y,
-    test_size=0.2,
-    random_state=42,
-    stratify=y,
+    X, y,                         # split features and matching targets together
+    test_size=0.2,                # reserve 20 percent for evaluation
+    random_state=42,              # make the split repeatable
+    stratify=y,                   # preserve class proportions
 )
 ```
 
@@ -42,11 +41,11 @@ X_train, X_test, y_train, y_test = train_test_split(
 ```python
 from sklearn.linear_model import LogisticRegression
 
-model = LogisticRegression(max_iter=1000)
-model.fit(X_train, y_train)
+model = LogisticRegression(max_iter=1000)  # create the estimator
+model.fit(X_train, y_train)                # learn from training rows only
 
-predictions = model.predict(X_test)
-accuracy = model.score(X_test, y_test)
+predictions = model.predict(X_test)        # predict held-out rows
+accuracy = model.score(X_test, y_test)     # compare predictions with targets
 ```
 
 Read the API:
@@ -81,11 +80,11 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
 model = make_pipeline(
-    StandardScaler(),
-    LogisticRegression(max_iter=1000),
+    StandardScaler(),                       # fit scaling inside the pipeline
+    LogisticRegression(max_iter=1000),      # fit the classifier second
 )
 
-model.fit(X_train, y_train)
+model.fit(X_train, y_train)                 # learns all parameters from training data
 ```
 
 The scaler is fitted only using training data.

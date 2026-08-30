@@ -23,7 +23,6 @@ collected here.
 
 - {download}`Matplotlib challenge <../workshop_scripts/matplotlib_challenge.py>`
 - {download}`Capstone starter <../workshop_scripts/capstone_starter.py>`
-- {download}`Live CodeQuiz script <../workshop_scripts/live_codequiz.py>`
 
 ## Data
 

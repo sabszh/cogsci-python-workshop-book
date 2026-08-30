@@ -1,4 +1,4 @@
-"""Live CodeQuiz prompts for the two-day workshop.
+"""Live CodeQuiz prompts for the workshop.
 
 Instructor: open this file after starting a session. Use the CodeLens actions
 above each exercise to publish and reveal. Students receive a sanitised copy.

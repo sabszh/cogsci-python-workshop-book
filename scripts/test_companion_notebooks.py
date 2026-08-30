@@ -11,7 +11,7 @@ from nbclient import NotebookClient
 
 
 ROOT = Path(__file__).resolve().parents[1]
-NOTEBOOKS = ROOT / "book" / "notebooks"
+NOTEBOOKS = ROOT / "notebooks"
 
 
 REPLACEMENTS = {

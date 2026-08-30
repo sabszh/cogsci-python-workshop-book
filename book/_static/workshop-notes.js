@@ -101,7 +101,14 @@
 
   function initialisePersonalAnswers() {
     const canStore = storageAvailable();
+    const codeRunExercises = new Set([
+      "figure-rescue",
+      "uncertainty-plot",
+      "figure-showdown",
+      "epochs-evoked-challenge",
+    ]);
     document.querySelectorAll(".exercise").forEach(function (exercise, index) {
+      if (codeRunExercises.has(exercise.id)) return;
       addAnswerBox(exercise, index, canStore);
     });
   }
