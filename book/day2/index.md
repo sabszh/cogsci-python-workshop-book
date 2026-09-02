@@ -3,6 +3,13 @@
 Day 2 uses yesterday's object and array reasoning to organise behavioural data, write
 analysis functions, and prepare inputs for models.
 
+```{admonition} Today's notebooks
+:class: important
+- **Notebook 1: Lexical decision data** — {doc}`open <../notebooks/01_lexical_decision_pandas>` or {download}`download <../notebooks/01_lexical_decision_pandas.ipynb>`
+- **Notebook 3: Model workflow** — {doc}`open <../notebooks/03_model_workflow>` or {download}`download <../notebooks/03_model_workflow.ipynb>`
+- **Notebook 4: NLP text features** — {doc}`open <../notebooks/04_nlp_text_features>` or {download}`download <../notebooks/04_nlp_text_features.ipynb>`
+```
+
 ## Retrieval warm-up
 
 ::::{exercise} Retrieve yesterday's axis reasoning

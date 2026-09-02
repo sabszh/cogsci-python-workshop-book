@@ -1,5 +1,12 @@
 # Visualisation with Matplotlib
 
+```{admonition} Use this notebook
+:class: important
+Continue in **Notebook 2: EEG arrays** for the EEG visualisation examples:
+{doc}`open it in the book <../notebooks/02_eeg_arrays>` or
+{download}`download the notebook <../notebooks/02_eeg_arrays.ipynb>`.
+```
+
 [Matplotlib](https://matplotlib.org/stable/) is the plotting library underneath pandas
 plots, seaborn, and much of MNE's visualisation. Its gallery is useful when you know
 what a plot should look like but not which method makes it: find a nearby example, then

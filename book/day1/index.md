@@ -2,6 +2,12 @@
 
 Day 1 connects everyday Python concepts to multidimensional cognitive-neuroscience data.
 
+```{admonition} Today's notebooks
+:class: important
+- **Notebook 0: Python warm-up** — {doc}`open <../notebooks/00_python_warmup>` or {download}`download <../notebooks/00_python_warmup.ipynb>`
+- **Notebook 2: EEG arrays** — {doc}`open <../notebooks/02_eeg_arrays>` or {download}`download <../notebooks/02_eeg_arrays.ipynb>`
+```
+
 ## Today's questions
 
 - Which Python interpreter is actually running my code?

@@ -1,6 +1,12 @@
 # NumPy dimensions and axes
 
-The {doc}`../notebooks/02_eeg_arrays` notebook applies indexing, Boolean masks, aggregation, and reshaping to a EEG recording.
+```{admonition} Use this notebook
+:class: important
+Use **Notebook 2: EEG arrays** for this chapter:
+{doc}`open it in the book <../notebooks/02_eeg_arrays>` or
+{download}`download the notebook <../notebooks/02_eeg_arrays.ipynb>`.
+It applies indexing, Boolean masks, aggregation, and reshaping to an EEG recording.
+```
 
 ## Start with meaning, then shape
 

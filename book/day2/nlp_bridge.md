@@ -1,5 +1,12 @@
 # Bridge to Natural Language Processing
 
+```{admonition} Use this notebook
+:class: important
+Use **Notebook 4: NLP text features** for this chapter:
+{doc}`open it in the book <../notebooks/04_nlp_text_features>` or
+{download}`download the notebook <../notebooks/04_nlp_text_features.ipynb>`.
+```
+
 The NLP course uses NumPy, pandas, Matplotlib, Seaborn, scikit-learn, spaCy, PyTorch, Transformers, sentence-transformers, and related libraries. The models may be unfamiliar, but their Python building blocks are not.
 
 ## Text often starts as dictionaries

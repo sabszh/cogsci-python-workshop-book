@@ -1,5 +1,13 @@
 # Day 1 challenge: Epochs to evoked
 
+```{admonition} Notebook connection
+:class: important
+This page contains its own runnable Python workspace. For more practice with the same
+array concepts, use **Notebook 2: EEG arrays**:
+{doc}`open it in the book <../notebooks/02_eeg_arrays>` or
+{download}`download the notebook <../notebooks/02_eeg_arrays.ipynb>`.
+```
+
 Work in groups of two or three. Predict shapes before running each transformation.
 
 ## Generate the data

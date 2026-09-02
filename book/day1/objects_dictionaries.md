@@ -1,5 +1,12 @@
 # Objects, methods, attributes, and dictionaries
 
+```{admonition} Use this notebook
+:class: important
+Use **Notebook 0: Python warm-up** to practise the concepts in this chapter:
+{doc}`open it in the book <../notebooks/00_python_warmup>` or
+{download}`download the notebook <../notebooks/00_python_warmup.ipynb>`.
+```
+
 Most scientific Python APIs become easier once you can read this pattern:
 
 ```python

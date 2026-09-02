@@ -11,9 +11,9 @@ the broad shape of the day rather than every transition.
 |---|---|---|
 | 09:15–10:30 | Welcome and research-ready Python | Python across the MSc courses, retrieval warm-up, environments, interpreters, kernels, projects, and paths |
 | 10:30–10:45 | ☕ Break |  |
-| 10:45–12:15 | Python foundations in practice | Objects, methods, attributes, dictionaries, mutation, functions, documentation, and Notebook 0 |
+| 10:45–12:15 | Python foundations in practice | Objects, methods, attributes, dictionaries, mutation, functions, documentation, and **Notebook 0: Python warm-up** |
 | 12:15–13:00 | 🍽️ Lunch |  |
-| 13:00–14:20 | NumPy and EEG data | Dimensions, axes, epoching, evoked responses, shape predictions, and the EEG notebook |
+| 13:00–14:20 | NumPy and EEG data | Dimensions, axes, epoching, evoked responses, shape predictions, and **Notebook 2: EEG arrays** |
 | 14:20–14:35 | ☕ Break |  |
 | 14:35–15:45 | Visualisation and figure remix | Matplotlib objects, uncertainty, figure critique, and paired work with the Stroop dataset |
 | 15:45–16:00 | Day 1 close | Questions, recap, and a preview of Day 2 |
@@ -24,9 +24,9 @@ the broad shape of the day rather than every transition.
 |---|---|---|
 | 09:15–10:30 | Functions and analysis pipelines | Retrieval from Day 1, side effects, assertions, documentation, and explicit processing steps |
 | 10:30–10:45 | ☕ Break |  |
-| 10:45–12:15 | Behavioural data with pandas | Trial-level data, inspection, filtering, transformations, grouping, and visualisation in Notebook 1 |
+| 10:45–12:15 | Behavioural data with pandas | Trial-level data, inspection, filtering, transformations, grouping, and visualisation in **Notebook 1: Lexical decision data** |
 | 12:15–13:00 | 🍽️ Lunch |  |
-| 13:00–14:15 | From data to models | `X`, `y`, `.fit()`, `.predict()`, pipelines, leakage, and NLP representations |
+| 13:00–14:15 | From data to models | `X`, `y`, `.fit()`, `.predict()`, pipelines, leakage, and NLP representations in **Notebook 3: Model workflow** and **Notebook 4: NLP text features** |
 | 14:15–14:30 | ☕ Break |  |
 | 14:30–15:40 | Integrated Cognitive Science challenge | Group work combining paths, behavioural tables, neuroscience arrays, functions, figures, and model-ready features |
 | 15:40–16:00 | Transfer and workshop close | Examples from ACN, NLP, and Data Science, followed by discussion and next steps |

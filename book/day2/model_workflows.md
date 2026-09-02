@@ -1,5 +1,12 @@
 # The shared model workflow
 
+```{admonition} Use this notebook
+:class: important
+Use **Notebook 3: Model workflow** for this chapter:
+{doc}`open it in the book <../notebooks/03_model_workflow>` or
+{download}`download the notebook <../notebooks/03_model_workflow.ipynb>`.
+```
+
 Data Science covers regression, classification, regularised linear models, decision
 trees, support vector machines, and neural networks. These approaches differ in what
 relationships they can represent, how they are fitted, and how their predictions are

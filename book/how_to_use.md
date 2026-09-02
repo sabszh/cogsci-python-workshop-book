@@ -25,6 +25,18 @@ prediction to runnable code, inspection, and an independent variation. Work thro
 examples in order when you are learning a concept; return to a particular exercise later
 when you need a refresher.
 
+Use this map whenever a chapter asks you to open a notebook:
+
+| Notebook | Use it for |
+|---|---|
+| **Notebook 0: Python warm-up** | Python foundations and objects |
+| **Notebook 1: Lexical decision data** | pandas and behavioural data |
+| **Notebook 2: EEG arrays** | NumPy dimensions, EEG, and visualisation |
+| **Notebook 3: Model workflow** | features, targets, fitting, and evaluation |
+| **Notebook 4: NLP text features** | text preprocessing and representations |
+
+Open or download them from the {doc}`notebook overview <notebooks>`.
+
 A typical cycle is:
 
 1. Read the prompt and predict the output, type, shape, or likely bug.

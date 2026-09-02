@@ -5,7 +5,14 @@ analysis. Work together to make the data, transformations, and results understan
 
 Open `book/workshop_scripts/capstone_starter.py` directly from the cloned repository,
 or {download}`download a separate copy <../workshop_scripts/capstone_starter.py>`.
-The {doc}`../notebooks` page links all notebooks used during the two days.
+
+```{admonition} Files for this challenge
+:class: important
+The main file is **`capstone_starter.py`** above. This challenge also brings together
+**Notebook 1: Lexical decision data**, **Notebook 2: EEG arrays**, **Notebook 3: Model
+workflow**, and **Notebook 4: NLP text features**. Find every notebook on the
+{doc}`notebook overview <../notebooks>`.
+```
 
 ## Scenario
 

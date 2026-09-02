@@ -1,5 +1,12 @@
 # Functions and analysis pipelines
 
+```{admonition} Use this notebook
+:class: important
+Use **Notebook 1: Lexical decision data** when the chapter moves into pandas analysis:
+{doc}`open it in the book <../notebooks/01_lexical_decision_pandas>` or
+{download}`download the notebook <../notebooks/01_lexical_decision_pandas.ipynb>`.
+```
+
 Functions give each analysis step a name, inputs, and output. This makes a long
 workflow easier to read and lets you test one transformation at a time. In this
 chapter we build from a small NumPy function to a pandas pipeline and use assertions

@@ -2,7 +2,12 @@
 
 This chapter collects the language features used throughout the workshop. Treat it as a reference: skim what is familiar and pause where your prediction differs from Python's result.
 
-After this chapter, use {doc}`../notebooks/00_python_warmup` to practise the same concepts in VS Code.
+```{admonition} Use this notebook
+:class: important
+Use **Notebook 0: Python warm-up** with this chapter:
+{doc}`open it in the book <../notebooks/00_python_warmup>` or
+{download}`download the notebook <../notebooks/00_python_warmup.ipynb>`.
+```
 
 ```{figure} ../_static/cartoons/xkcd-code-quality.png
 :alt: A programmer reviews extremely confusing code and compares it with several increasingly absurd constructions.
