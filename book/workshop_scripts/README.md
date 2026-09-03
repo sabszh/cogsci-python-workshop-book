@@ -6,10 +6,10 @@ Python files; they do not need to be copied out of the repository.
 | Script | Used for |
 |---|---|
 | `matplotlib_challenge.py` | Day 1 Stroop figure remix |
-| `capstone_starter.py` | Day 2 integrated Cognitive Science challenge |
+| `emotion_classification_challenge.py` | Day 2 emotion-classification challenge |
 
 Before running a script, select the `cogsci-python` or `.venv` interpreter in VS Code.
-The capstone script expects the repository structure to remain intact because it reads
+The challenge script expects the repository structure to remain intact because it reads
 CSV files from `book/data/`.
 
 The notebooks are in the top-level `notebooks/` folder and the datasets are in `book/data/`. Start

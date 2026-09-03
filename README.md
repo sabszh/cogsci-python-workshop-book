@@ -18,7 +18,7 @@ file—in VS Code. Student-facing material is organised as follows:
 cogsci-python-workshop-book/
 ├── book/
 ├── notebooks/              # student notebooks — start here
-│   ├── workshop_scripts/   # CodeQuiz, Matplotlib, and capstone scripts
+│   ├── workshop_scripts/   # CodeQuiz, Matplotlib, and challenge scripts
 │   ├── data/               # CSV and EEG files used by the exercises
 │   ├── day1/               # Day 1 booklet chapters
 │   └── day2/               # Day 2 booklet chapters
@@ -52,8 +52,8 @@ Open `book/_build/html/index.html` after the build.
 ## Content
 
 - Day 1: environments, paths, objects, dictionaries, NumPy dimensions, and visualisation
-- Day 2: functions, pandas, model workflows, NLP data structures, and an integrated challenge
-- Instructor guide and CodeQuiz prompts
+- Day 2: functions, pandas, model workflows, NLP data structures, and an emotion-classification challenge
+- Instructor slides and CodeQuiz prompts
 - Downloadable workshop scripts and sample data
 
 Students install only `workshop-requirements.txt`. The root `requirements.txt` additionally contains the documentation build dependencies.

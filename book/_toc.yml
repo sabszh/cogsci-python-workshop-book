@@ -37,7 +37,7 @@ parts:
       - file: day2/pandas
       - file: day2/model_workflows
       - file: day2/nlp_bridge
-      - file: day2/capstone
+      - file: day2/emotion_classification_challenge
   - caption: "Day 3: Learning and reflection"
     chapters:
       - file: day3/index

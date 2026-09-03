@@ -24,11 +24,11 @@ the broad shape of the day rather than every transition.
 |---|---|---|
 | 09:15–10:30 | Functions and analysis pipelines | Retrieval from Day 1, side effects, assertions, documentation, and explicit processing steps |
 | 10:30–10:45 | ☕ Break |  |
-| 10:45–12:15 | Behavioural data with pandas | Trial-level data, inspection, filtering, transformations, grouping, and visualisation in **Notebook 1: Lexical decision data** |
+| 10:45–12:15 | Behavioural data with pandas | Trial-level data, inspection, filtering, transformations, grouping, visualisation, and the code-commenting exercise in **Notebook 1: Lexical decision data** |
 | 12:15–13:00 | 🍽️ Lunch |  |
 | 13:00–14:15 | From data to models | `X`, `y`, `.fit()`, `.predict()`, pipelines, leakage, and NLP representations in **Notebook 3: Model workflow** and **Notebook 4: NLP text features** |
 | 14:15–14:30 | ☕ Break |  |
-| 14:30–15:40 | Integrated Cognitive Science challenge | Group work combining paths, behavioural tables, neuroscience arrays, functions, figures, and model-ready features |
+| 14:30–15:40 | NLP and Data Science project | Group work creating a structured project, writing a runnable text-classification script, and documenting the analysis |
 | 15:40–16:00 | Transfer and workshop close | Examples from ACN, NLP, and Data Science, followed by discussion and next steps |
 
 ## Day 3: Learning, skills, and AI

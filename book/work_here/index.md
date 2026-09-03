@@ -22,7 +22,7 @@ collected here.
 ## Scripts
 
 - {download}`Matplotlib challenge <../workshop_scripts/matplotlib_challenge.py>`
-- {download}`Capstone starter <../workshop_scripts/capstone_starter.py>`
+- {download}`Emotion-classification challenge <../workshop_scripts/emotion_classification_challenge.py>`
 
 ## Data
 

@@ -109,6 +109,106 @@ analysis = participant_summary.merge(
 
 `validate` turns an assumption about the relationship into a check.
 
+## Exercise: Comment the analysis
+
+This exercise is about **reading and explaining code**, not writing a new analysis.
+Work with one or two other people. {download}`Download the complete Python script
+<../workshop_scripts/comment_pandas.py>`, open it in VS Code, and run it once without
+changing anything. It should print a summary table and display a figure.
+
+The script contains a complete working analysis but almost no comments:
+
+```{literalinclude} ../workshop_scripts/comment_pandas.py
+:language: python
+:linenos:
+```
+
+::::{exercise} Add comments for a future collaborator
+:label: pandas-comment-code
+Imagine that a new student will use this script next semester. Add comments directly
+to the downloaded `.py` file that help them understand the analysis without merely
+translating Python into English. Do not change the working code.
+
+Your comments should explain:
+
+1. where the input file is located and what one input row represents;
+2. which observations are removed;
+3. why reaction time is multiplied by 1,000;
+4. what `.groupby(["participant", "condition"])` makes one output row represent;
+5. what each new summary column contains; and
+6. why sorting changes the presentation but not the calculated values;
+7. why the data are summarised a second time for the plot; and
+8. what the bars and error bars represent.
+
+Add a comment above each main step and short end-of-line comments only where they make
+a particular operation clearer. Do not comment every line. Run the script again to
+confirm that adding comments has not changed its behaviour. When your group is done,
+exchange scripts with another group: can they explain the analysis using only your
+comments, the printed result, and the figure?
+::::
+
+::::{admonition} Before you run it
+:class: tip
+Predict the columns in `participant_summary` and whether it will have more or fewer
+rows than `trials`. Record the prediction before checking it with Python.
+::::
+
+::::{solution} pandas-comment-code
+There is no single correct wording. One useful version is:
+
+```python
+# Build a path that works when the project is stored in a different location.
+project_dir = Path(__file__).resolve().parent.parent
+trials_path = project_dir / "data" / "trials.csv"
+
+# Load trial-level data: each row represents one experimental trial.
+trials = pd.read_csv(trials_path)
+
+# Retain correct trials with a recorded reaction time, then convert seconds to ms.
+correct_trials = (
+    trials
+    .dropna(subset=["reaction_time"])
+    .loc[lambda data: data["correct"]]
+    .assign(reaction_time_ms=lambda data: data["reaction_time"] * 1000)
+)
+
+# Produce one row for every observed participant–condition combination.
+participant_summary = (
+    correct_trials
+    .groupby(["participant", "condition"], as_index=False)
+    .agg(
+        mean_rt_ms=("reaction_time_ms", "mean"),  # mean correct-trial RT
+        n_trials=("trial", "count"),               # retained trial count
+    )
+    # Arrange rows consistently without changing the summary calculations.
+    .sort_values(["participant", "condition"])
+)
+
+# Average participant-level values so each participant contributes equally to a bar.
+condition_summary = (
+    participant_summary
+    .groupby("condition", as_index=False)
+    .agg(
+        mean_rt_ms=("mean_rt_ms", "mean"),
+        variability=("mean_rt_ms", "std"),  # between-participant standard deviation
+    )
+)
+
+# Plot the condition means; error bars show between-participant variability.
+fig, ax = plt.subplots(figsize=(6, 4))
+ax.bar(
+    condition_summary["condition"],
+    condition_summary["mean_rt_ms"],
+    yerr=condition_summary["variability"],
+    capsize=5,
+)
+```
+
+Good comments communicate the **unit of observation**, the reason for a
+transformation, and the meaning of the output. A comment such as
+`# use groupby` repeats the code but does not provide that information.
+::::
+
 ::::{exercise} Participant summaries
 :label: pandas-summary
 For correct trials only, calculate each participant's mean reaction time in each condition. Sort from fastest to slowest.
