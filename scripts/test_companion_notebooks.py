@@ -142,25 +142,39 @@ def main() -> None:
     with tempfile.TemporaryDirectory(prefix="cogsci-notebook-tests-") as temp_dir:
         temp_path = Path(temp_dir)
 
+        cases = []
         for filename in REPLACEMENTS:
-            source = NOTEBOOKS / filename
-            completed = complete_notebook(source)
+            student = NOTEBOOKS / filename
+            solution = NOTEBOOKS / "solutions" / filename.replace(".ipynb", "_solutions.ipynb")
+            for source in (student, solution):
+                for working_dir in (ROOT, source.parent):
+                    cases.append((source, working_dir))
+
+        for source, working_dir in cases:
+            completed = (
+                complete_notebook(source)
+                if source.parent == NOTEBOOKS
+                else nbformat.read(source, as_version=4)
+            )
             client = NotebookClient(
                 completed,
                 timeout=120,
                 kernel_name="python3",
-                resources={"metadata": {"path": str(ROOT)}},
+                resources={"metadata": {"path": str(working_dir)}},
             )
             executed = client.execute()
             text = output_text(executed)
 
             if "✗" in text:
-                raise AssertionError(f"{filename}: at least one exercise check failed\n{text}")
+                raise AssertionError(f"{source.name}: at least one exercise check failed\n{text}")
 
-            destination = temp_path / filename
+            destination = temp_path / source.name
             nbformat.write(executed, destination)
             passed = text.count("✅")
-            print(f"{filename}: executed successfully ({passed} checks passed)")
+            print(
+                f"{source.name} from {working_dir.relative_to(ROOT)}: "
+                f"executed successfully ({passed} checks passed)", flush=True
+            )
 
 
 if __name__ == "__main__":

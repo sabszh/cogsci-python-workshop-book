@@ -20,7 +20,6 @@ In the example below, `documents` is a list with one dictionary per response. Th
 list comprehensions select the same field from every dictionary. At this point the IDs
 are not used, but they should be retained so predictions can later be connected to the
 source observations.
-
 ```python
 documents = [
     {"id": "D01", "text": "The participant responded quickly.", "label": "fast"},

@@ -10,3 +10,7 @@ These are completed versions of the five student notebooks:
 
 Open the repository folder in VS Code and select the workshop Python environment before
 running a solution. Try the matching exercise notebook in the parent folder first.
+
+Keep the solutions inside the cloned repository: they use `../workshop_checks.py`
+and the data in `../../book/data/`. The first cell locates these automatically.
+After updating a notebook, restart its kernel and run all cells from the top.

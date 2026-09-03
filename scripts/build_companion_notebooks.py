@@ -17,10 +17,18 @@ FEEDBACK_CODE = '''
 from pathlib import Path
 import sys
 
-for _candidate in (Path.cwd(), Path.cwd() / "notebooks"):
-    if (_candidate / "workshop_checks.py").exists():
-        sys.path.insert(0, str(_candidate))
+# Find the repository from the notebook folder, solutions folder, or project root.
+for _candidate in (Path.cwd().resolve(), *Path.cwd().resolve().parents):
+    if (_candidate / "notebooks" / "workshop_checks.py").is_file():
+        PROJECT_ROOT = _candidate
         break
+else:
+    raise FileNotFoundError(
+        "Open this notebook inside the cloned workshop repository; "
+        "notebooks/workshop_checks.py is required."
+    )
+
+sys.path.insert(0, str(PROJECT_ROOT / "notebooks"))
 
 from workshop_checks import Check, run_checks
 
@@ -168,13 +176,9 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-candidates = [
-    Path("book/data/real/lexical_decision.csv"),
-    Path("../data/real/lexical_decision.csv"),
-]
-data_path = next((path for path in candidates if path.exists()), None)
-if data_path is None:
-    raise FileNotFoundError("Open this notebook from the workshop repository.")
+data_path = PROJECT_ROOT / "book" / "data" / "real" / "lexical_decision.csv"
+if not data_path.is_file():
+    raise FileNotFoundError(f"Missing workshop data: {data_path}")
 
 trials = ...  # load the CSV
 trials.head()
@@ -447,13 +451,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.io import arff
 
-candidates = [
-    Path("book/data/real/eeg_eye_state.arff"),
-    Path("../data/real/eeg_eye_state.arff"),
-]
-data_path = next((path for path in candidates if path.exists()), None)
-if data_path is None:
-    raise FileNotFoundError("Open this notebook from the workshop repository.")
+data_path = PROJECT_ROOT / "book" / "data" / "real" / "eeg_eye_state.arff"
+if not data_path.is_file():
+    raise FileNotFoundError(f"Missing workshop data: {data_path}")
 
 raw_records, metadata = ...
 eeg = ...
@@ -723,13 +723,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
 
-candidates = [
-    Path("book/data/real/lexical_decision.csv"),
-    Path("../data/real/lexical_decision.csv"),
-]
-data_path = next((path for path in candidates if path.exists()), None)
-if data_path is None:
-    raise FileNotFoundError("Open this notebook from the workshop repository.")
+data_path = PROJECT_ROOT / "book" / "data" / "real" / "lexical_decision.csv"
+if not data_path.is_file():
+    raise FileNotFoundError(f"Missing workshop data: {data_path}")
 
 trials = ...
 trials["is_correct"] = ...

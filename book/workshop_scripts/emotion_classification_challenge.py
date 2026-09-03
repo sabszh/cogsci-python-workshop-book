@@ -1,4 +1,4 @@
-"""Explore how well a simple model recognises emotion labels in short comments."""
+"""Explore how well a simple model recognises emotion labels."""
 
 from pathlib import Path
 

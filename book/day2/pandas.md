@@ -116,7 +116,7 @@ Work with one or two other people. {download}`Download the complete Python scrip
 <../workshop_scripts/comment_pandas.py>`, open it in VS Code, and run it once without
 changing anything. It should print a summary table and display a figure.
 
-The script contains a complete working analysis but almost no comments:
+Now it is your turn to add the comments:
 
 ```{literalinclude} ../workshop_scripts/comment_pandas.py
 :language: python
@@ -142,9 +142,7 @@ Your comments should explain:
 
 Add a comment above each main step and short end-of-line comments only where they make
 a particular operation clearer. Do not comment every line. Run the script again to
-confirm that adding comments has not changed its behaviour. When your group is done,
-exchange scripts with another group: can they explain the analysis using only your
-comments, the printed result, and the figure?
+confirm that adding comments has not changed its behaviour.
 ::::
 
 ::::{admonition} Before you run it

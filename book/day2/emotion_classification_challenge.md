@@ -93,6 +93,9 @@ provided GoEmotions subset.
 
 If your group gets stuck on the basic scikit-learn structure, consult
 {download}`this runnable example <../workshop_scripts/emotion_classification_challenge.py>`.
+In your cloned repository, it is at
+`book/workshop_scripts/emotion_classification_challenge.py`.
+
 Use it as a reference rather than copying it unchanged: your own script and README
 should reflect your dataset and research question.
 
